@@ -1,0 +1,28 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+.marquee {
+  white-space: nowrap;
+  overflow: hidden;
+  position: relative;
+  width: 100%; /* Ensure the container spans the full width */
+}
+
+.marquee span {
+  display: inline-block;
+  position: absolute;
+  animation: marquee 10s linear infinite;
+}
+
+@keyframes marquee {
+  0% {
+    left: 100%; /* Start from the right edge */
+  }
+  100% {
+    left: -100%; /* Move to the left edge */
+  }
+}
+.active-link {
+  border-bottom: 2px solid #22c55ed4; /* Adjust the color as needed */
+}
