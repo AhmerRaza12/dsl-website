@@ -4,7 +4,7 @@ const Navbar = () => {
   return (
     <nav
       className="sticky top-0 bg-white shadow-md flex items-center justify-between px-6 py-3 z-40"
-      style={{ marginTop: "45px" }} // Adjust this value according to the height of the Topbar component
+      style={{ marginTop: "45px" }} 
     >
       <div className="flex items-center">
         <img src="logo.png" alt="Logo" className="h-8 mr-4" />

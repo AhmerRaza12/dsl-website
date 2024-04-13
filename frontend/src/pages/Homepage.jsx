@@ -1,14 +1,15 @@
-import "../styles.css"
+import "../styles.css";
 import Topbar from "../components/Topbar";
 import Navbar from "../components/Navbar";
-const Homepage =()=>{
-return (
-<div className="homepage">
-<Topbar  />
-<Navbar  />
-</div>
-)
-
-}
+import Slideshow from "../components/Slideshow";
+const Homepage = () => {
+  return (
+    <div className="homepage">
+      <Topbar />
+      <Navbar />
+      <Slideshow className="mt-5" />
+    </div>
+  );
+};
 
 export default Homepage;

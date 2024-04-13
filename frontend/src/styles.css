@@ -6,7 +6,7 @@
   white-space: nowrap;
   overflow: hidden;
   position: relative;
-  width: 100%; /* Ensure the container spans the full width */
+  width: 100%; 
 }
 
 .marquee span {
@@ -17,12 +17,17 @@
 
 @keyframes marquee {
   0% {
-    left: 100%; /* Start from the right edge */
+    left: 100%; 
   }
   100% {
-    left: -100%; /* Move to the left edge */
+    left: -100%; 
   }
 }
 .active-link {
-  border-bottom: 2px solid #22c55ed4; /* Adjust the color as needed */
+  border-bottom: 2px solid #22c55ed4; 
+}
+.slider-button:hover {
+  background-color: #78ff954d;
+  height: 100%;
+  width: 4rem;
 }
