@@ -5,8 +5,8 @@ import '../styles.css';
 
 const HeroSection = () => {
   return (
-    <div className="flex h-screen items center mt-5">
-      <div className="w-full mx-auto p-6 ">
+    <div className="flex  items center mt-5">
+      <div className="w-full mx-auto p-6">
         {/* DSL Strategy */}
         <div className="hero-item animate-slideLeft text-left mt-10">
             <h2 className="text-2xl font-bold mb-2"> DSL Strategy 

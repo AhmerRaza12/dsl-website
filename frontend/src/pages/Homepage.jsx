@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar";
 import Slideshow from "../components/Slideshow";
 import Cardads from "../components/Cardads";
 import HeroSection from "../components/HeroSection";
+import DeliveryPartners from "../components/DeliveryPartners";
 const Homepage = () => {
   return (
     <div className="homepage">
@@ -12,6 +13,7 @@ const Homepage = () => {
       <Slideshow className="mt-5" />
       <Cardads />
       <HeroSection />
+      <DeliveryPartners />
     </div>
   );
 };
