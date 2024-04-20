@@ -19,7 +19,7 @@ const DeliveryPartners = () => {
     autoplay: true,
     autoplaySpeed: 0,
     cssEase: 'linear',
-    pauseOnHover: false,
+    pauseOnHover: true,
     arrows: false,
     responsive: [
       {
@@ -40,7 +40,7 @@ const DeliveryPartners = () => {
         <h1 className="text-black text-6xl font-bold inline">Delivery</h1>
         <h1 className="text-green-500 text-6xl font-bold inline"> Partners</h1>
       </div>
-      <div className="mt-20" style={{ maxWidth: '100%', overflowX: 'hidden' }}>
+      <div className="mt-20 mb-20" style={{ maxWidth: '100%', overflowX: 'hidden' }}>
         <Slider {...settings}>
           {partnerLogos.map((logo, index) => (
             <div key={index} className="mx-1 cursor-pointer">
