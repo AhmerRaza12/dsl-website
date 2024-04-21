@@ -6,6 +6,7 @@ import Cardads from "../components/Cardads";
 import HeroSection from "../components/HeroSection";
 import DeliveryPartners from "../components/DeliveryPartners";
 import ChatContainer from "../components/ChatContainer";
+import CustomerForms from "../components/CustomerForms";
 const Homepage = () => {
   return (
     <div className="homepage">
@@ -14,6 +15,7 @@ const Homepage = () => {
       <Slideshow className="mt-5" />
       <Cardads />
       <HeroSection />
+      <CustomerForms/>
       <DeliveryPartners />
       <ChatContainer />
     </div>
