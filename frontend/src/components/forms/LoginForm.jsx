@@ -1,13 +1,32 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types'; 
+import { Link } from 'react-router-dom'; 
+import {useNavigate} from 'react-router-dom';
 
-const LoginForm = () => {
+const LoginForm = ({ onLogin }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Submitted:', { username, password });
+
+    const formData = new FormData();
+    formData.append('username', username);
+    formData.append('password', password);
+    
+    fetch('http://127.0.0.1:5000/user/login', {
+      method: 'POST',
+      body: formData,
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      onLogin(data); 
+      useNavigate('/');
+      
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
   };
 
   return (
@@ -45,6 +64,11 @@ const LoginForm = () => {
       <p className="mt-4 text-black">Not registered? <span className='underline text-gray-800 font-bold text-xl pl-2'><Link to="/signup">Register here</Link></span></p>
     </div>
   );
+};
+
+
+LoginForm.propTypes = {
+  onLogin: PropTypes.func.isRequired,
 };
 
 export default LoginForm;

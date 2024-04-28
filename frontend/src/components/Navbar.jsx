@@ -1,6 +1,6 @@
 import "../styles.css";
-
-const Navbar = () => {
+import PropTypes from 'prop-types'; 
+const Navbar = ({loggedInName}) => {
   return (
     <nav
       className="sticky top-0 bg-white shadow-md flex items-center justify-between px-6 py-3 z-40"
@@ -59,12 +59,22 @@ const Navbar = () => {
           </a>
         </li>
       </ul>
-
-      <button className="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 transition duration-300 ease-in-out">
+      {loggedInName ? 
+      (
+          <p className="text-black">Welcome, <span className="text-green-500">{loggedInName}</span></p>
+          
+      ):(
+         <button className="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 transition duration-300 ease-in-out">
         Login
       </button>
+      )}
+      
     </nav>
   );
+};
+
+Navbar.propTypes = {
+  loggedInName: PropTypes.string
 };
 
 export default Navbar;

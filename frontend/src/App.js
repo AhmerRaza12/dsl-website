@@ -6,6 +6,8 @@ import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import Homepage from './pages/Homepage';
 import Login from './pages/Login';
 import SignUp from './pages/signup';
+import Navbar from './components/Navbar';
+
 const ScrollToTopButton = () => {
   const [showButton, setShowButton] = React.useState(false);
 
@@ -36,12 +38,24 @@ const ScrollToTopButton = () => {
 };
 
 export default function App() {
+  const [loggedInName, setLoggedInName] = React.useState('');
+
+  const handleLogin = (data) => {
+    
+    console.log(data)
+    setLoggedInName(data);
+  };
+
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<><Homepage /><ScrollToTopButton/></>} />
-        <Route path="/login" element={<><Login/><ScrollToTopButton/></>} />
-        <Route path='/signup' element={<><SignUp/><ScrollToTopButton/></>} />
+        <Route path="/" element={<>
+          <Navbar loggedInName={loggedInName} />
+          <Homepage />
+          <ScrollToTopButton />
+        </>} />
+        <Route path="/login" element={<><Login handleLogin={handleLogin} /><ScrollToTopButton /></>} />
+        <Route path='/signup' element={<><SignUp /><ScrollToTopButton /></>} />
       </Routes>
     </Router>
   );

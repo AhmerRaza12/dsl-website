@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import DslLogo from '../../assets/DSL LOGO 2024.png';
 const SignUpForm = () => {
-  const [name, setName] = useState('');
+  const [fname, setfName] = useState('');
+  const [lname, setlName] = useState('');
   const [contact, setContact] = useState('');
   const [shippingAddress, setShippingAddress] = useState('');
   const [email, setEmail] = useState('');
@@ -15,7 +16,7 @@ const SignUpForm = () => {
       alert("Passwords don't match!");
       return;
     }
-    console.log('Submitted:', { name, contact, shippingAddress,  email, password });
+    console.log('Submitted:', { fname,lname, contact, shippingAddress,  email, password });
   };
 
   return (
@@ -35,9 +36,9 @@ const SignUpForm = () => {
               <label htmlFor="name" className="block text-gray-800 font-semibold mb-2"> First Name</label>
               <input
                 type="text"
-                id="name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                id="fname"
+                value={fname}
+                onChange={(e) => setfName(e.target.value)}
                 className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-green-400 text-gray-800"
                 required
               />
@@ -46,9 +47,9 @@ const SignUpForm = () => {
               <label htmlFor="name" className="block text-gray-800 font-semibold mb-2">Last Name</label>
               <input
                 type="text"
-                id="name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                id="lname"
+                value={lname}
+                onChange={(e) => setlName(e.target.value)}
                 className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-green-400 text-gray-800"
                 required
               />
