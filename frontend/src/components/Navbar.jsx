@@ -61,14 +61,12 @@ const Navbar = ({loggedInName}) => {
       </ul>
       {loggedInName ? 
       (
-          <p className="text-black">Welcome, <span className="text-green-500">{loggedInName}</span></p>
-          
+          <p className="text-black">Welcome, <span className="text-green-500">{loggedInName}</span></p>    
       ):(
          <button className="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 transition duration-300 ease-in-out">
         Login
       </button>
       )}
-      
     </nav>
   );
 };
