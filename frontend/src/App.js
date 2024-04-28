@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
 
 import Homepage from './pages/Homepage';
-
+import Login from './pages/Login';
+import SignUp from './pages/signup';
 const ScrollToTopButton = () => {
-  const [showButton, setShowButton] = useState(false);
+  const [showButton, setShowButton] = React.useState(false);
 
   const handleScroll = () => {
     const scrollPosition = window.scrollY;
@@ -16,7 +18,7 @@ const ScrollToTopButton = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  useEffect(() => {
+  React.useEffect(() => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -35,9 +37,12 @@ const ScrollToTopButton = () => {
 
 export default function App() {
   return (
-    <div className="App">
-      <Homepage />
-      <ScrollToTopButton />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<><Homepage /><ScrollToTopButton/></>} />
+        <Route path="/login" element={<><Login/><ScrollToTopButton/></>} />
+        <Route path='/signup' element={<><SignUp/><ScrollToTopButton/></>} />
+      </Routes>
+    </Router>
   );
 }
