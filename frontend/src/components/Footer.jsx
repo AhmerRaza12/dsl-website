@@ -2,8 +2,13 @@ import React from "react";
 import Dsllogo from "../assets/DSL LOGO WITH TAGLINE.png";
 import { Link } from "react-router-dom";
 import { HiOutlineLocationMarker } from "react-icons/hi";
-import { CiFacebook, CiInstagram, CiLinkedin, CiTwitter, CiYoutube } from "react-icons/ci";
-
+import {
+  CiFacebook,
+  CiInstagram,
+  CiLinkedin,
+  CiTwitter,
+  CiYoutube,
+} from "react-icons/ci";
 
 const Footer = () => {
   return (
@@ -114,7 +119,7 @@ const Footer = () => {
                   </a>
                 </li>
                 <li className="mb-2">
-                  <span className="font-bold inline-block">Corporate Sales:</span>
+                  <span className="font-bold inline-block"> Corporate Sales:</span>
                   <a
                     href="mailto:cs@dslcourier.com"
                     className="inline-block hover:underline text-green-500"
@@ -206,7 +211,7 @@ const Footer = () => {
               href="https://www.facebook.com/dslcourier"
               className="text-gray-500 hover:text-gray-900 dark:hover:text-white"
             >
-            <CiFacebook className="w-6 h-6 " />
+              <CiFacebook className="w-6 h-6 " />
             </a>
             <a
               href="https://www.instagram.com/dslcourier"
@@ -221,17 +226,16 @@ const Footer = () => {
               <CiLinkedin className="w-6 h-6" />
             </a>
             <a
-                
               href="https://www.twitter.com/dslcourier"
               className="text-gray-500 hover:text-gray-900 dark:hover:text-white"
             >
-                <CiTwitter className="w-6 h-6" />
+              <CiTwitter className="w-6 h-6" />
             </a>
             <a
               href="https://www.youtube.com/channel/UCS3nE5TvKd0PkHCg-qN_Uvw"
               className="text-gray-500 hover:text-gray-900 dark:hover:text-white"
             >
-             <CiYoutube className="w-6 h-6" />
+              <CiYoutube className="w-6 h-6" />
             </a>
           </div>
         </div>
