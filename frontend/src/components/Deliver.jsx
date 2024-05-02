@@ -2,7 +2,7 @@ import React from 'react'
 import DslPakistanImage from '../assets/DSL DOMESTIC MAP.png'
 const Deliver = () => {
   return (
-    <div className='h-screen flex gap-x-8 columns-2 '>
+    <div className='flex gap-x-8 columns-2 '>
         {/* 35% width content textbox */}
         <div className='w-1/3 text-black p-6 text-left  '>
           
