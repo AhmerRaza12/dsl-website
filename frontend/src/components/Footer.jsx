@@ -2,20 +2,15 @@ import React from "react";
 import Dsllogo from "../assets/DSL LOGO WITH TAGLINE.png";
 import { Link } from "react-router-dom";
 import { HiOutlineLocationMarker } from "react-icons/hi";
-import {
-  CiFacebook,
-  CiInstagram,
-  CiLinkedin,
-  CiTwitter,
-  CiYoutube,
-} from "react-icons/ci";
+import {CiFacebook,CiInstagram,CiLinkedin,CiTwitter,CiYoutube} from "react-icons/ci";
+import BarcodeImage from "../assets/DSL KARO BARCODE LOGO GREEN.png"
 
 const Footer = () => {
   return (
     <footer className="p-4 bg-white-200 sm:p-6 dark:bg-gray-900">
       <div className="mx-auto max-w-screen-xl">
         <div className="md:flex md:justify-between">
-          <div className="grid grid-cols-4 gap-4 sm:gap-2 sm:grid-cols-4">
+          <div className="grid grid-cols-5 gap-4 sm:gap-2 sm:grid-cols-5">
             <div className="mb-6 md:mb-0 w-48">
               <Link href="/" className="flex ">
                 <img src={Dsllogo} className="mr-3 h-40 w-40" alt="DSL Logo" />
@@ -195,6 +190,12 @@ const Footer = () => {
                 </li>
               </ul>
             </div>
+            <div className="mb-6 md:mb-0 w-48 mt-10">
+              <Link href="/" className="flex ">
+                <img src={BarcodeImage} className="ml-3 h-32 w-32" alt="DSL Logo" />
+              </Link>
+            </div>
+            
           </div>
         </div>
         <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
@@ -238,7 +239,9 @@ const Footer = () => {
               <CiYoutube className="w-6 h-6" />
             </a>
           </div>
+          
         </div>
+        
       </div>
     </footer>
   );
