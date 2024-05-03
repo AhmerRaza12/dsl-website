@@ -2,14 +2,17 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
-
+import About from './pages/About';
 import Homepage from './pages/Homepage';
 import Login from './pages/Login';
 import SignUp from './pages/signup';
 import Navbar from './components/Navbar';
-
+import Services from './pages/Services';
+import Cakesh from './pages/Cakesh';
+import Feelings from './pages/Feelings';
 const ScrollToTopButton = () => {
   const [showButton, setShowButton] = React.useState(false);
+  
 
   const handleScroll = () => {
     const scrollPosition = window.scrollY;
@@ -55,6 +58,10 @@ export default function App() {
           <ScrollToTopButton />
         </>} />
         <Route path="/login" element={<><Login handleLogin={handleLogin} /><ScrollToTopButton /></>} />
+        <Route path= '/about' element={<><About /><ScrollToTopButton /></>} />
+        <Route path='/services' element={<><Services /><ScrollToTopButton /></>} />
+        <Route path='/cakesh' element={<><Cakesh /><ScrollToTopButton /></>} />
+        <Route path='/feelings' element={<><Feelings /><ScrollToTopButton /></>} />
         <Route path='/signup' element={<><SignUp /><ScrollToTopButton /></>} />
       </Routes>
     </Router>

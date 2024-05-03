@@ -137,56 +137,61 @@ const Footer = () => {
             </div>
             <div>
               <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
-                CONTACT US
+                Top Links
               </h2>
               <ul className="text-gray-600 dark:text-gray-400">
                 <li className="mb-2">
-                  <a
-                    href="https://github.com/themesberg/flowbite"
+                  <Link
+                    to='/'
                     className=" text-green-600 font-bold text-lg"
                   >
                     Home
-                  </a>
+                  </Link>
                 </li>
                 <li className="mb-2">
-                  <a
-                    href="https://discord.gg/4eeurUVvTy"
+                  <Link
+                    to='/about'
+                    href="https://www.dslcourier.com/about-us/"
                     className=" text-green-600 font-bold text-lg"
                   >
                     About Us
-                  </a>
+                  </Link>
                 </li>
                 <li className="mb-2">
-                  <a
-                    href="https://discord.gg/4eeurUVvTy"
+                  <Link
+                    to='/services'
+                    href="https://www.dslcourier.com/services/"
                     className=" text-green-600 font-bold text-lg"
                   >
                     Services
-                  </a>
+                  </Link>
                 </li>
                 <li className="mb-2">
-                  <a
-                    href="https://discord.gg/4eeurUVvTy"
+                  <Link
+                    to='/cakesh'
+                    href="https://www.dslcourier.com/cakesh/"
                     className=" text-green-600 font-bold text-lg"
                   >
                     Cakesh
-                  </a>
+                  </Link>
                 </li>
                 <li className="mb-2">
-                  <a
-                    href="https://discord.gg/4eeurUVvTy"
+                  <Link
+                    to='/feelings'
+                    href="https://www.dslcourier.com/feelings/"
                     className=" text-green-600 font-bold text-lg"
                   >
                     Feelings
-                  </a>
+                  </Link>
                 </li>
                 <li className="mb-2">
-                  <a
-                    href="https://discord.gg/4eeurUVvTy"
+                  <Link
+                    to='/contact'
+                    href="https://www.dslcourier.com/contact-us/"
                     className=" text-green-600 font-bold text-lg"
                   >
                     Contact Us
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>

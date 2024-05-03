@@ -1,6 +1,16 @@
 import "../styles.css";
 import PropTypes from 'prop-types'; 
+import { Link, useLocation } from "react-router-dom";
+
 const Navbar = ({loggedInName}) => {
+  const location = useLocation();
+  // const handleActiveLink = (e) => {
+  //   const links = document.querySelectorAll(".active-link");
+  //   links.forEach((link) => {
+  //     link.classList.remove("active-link");
+  //   });
+  //   e.target.classList.add("active-link");
+  // }
   return (
     <nav
       className="sticky top-0 bg-white shadow-md flex items-center justify-between px-6 py-3 z-40"
@@ -11,52 +21,59 @@ const Navbar = ({loggedInName}) => {
       </div>
       <ul className="flex items-center space-x-6">
         <li>
-          <a
-            href="#"
-            className="text-black text-lg hover:text-green-600 transition duration-300 ease-in-out active-link"
+          <Link
+            to="/"
+            className={`text-black text-lg hover:text-green-600 transition duration-300 ease-in-out
+            ${location.pathname=='/'? 'active-link':''} `}
           >
             Home
-          </a>
+          </Link>
         </li>
         <li>
-          <a
-            href="#"
-            className="text-black text-lg hover:text-green-600 transition duration-300 ease-in-out"
+          <Link
+            to="/about"
+            className={`text-black text-lg hover:text-green-600 transition duration-300 ease-in-out
+            ${location.pathname=='/about'? 'active-link':''}`}
           >
             About
-          </a>
+          </Link>
         </li>
         <li>
-          <a
-            href="#"
-            className="text-black text-lg hover:text-green-600 transition duration-300 ease-in-out"
+          <Link
+            to="/services"
+            className={`text-black text-lg hover:text-green-600 transition duration-300 ease-in-out 
+            ${location.pathname=='/services'? 'active-link':''}`}
           >
             Services
-          </a>
+          </Link>
         </li>
         <li>
-          <a
-            href="#"
-            className="text-black text-lg hover:text-green-600 transition duration-300 ease-in-out"
+          <Link
+            to="/cakesh"
+            className={`text-black text-lg hover:text-green-600 transition duration-300 ease-in-out 
+             ${location.pathname=='/cakesh'? 'active-link':''}`}
           >
             Cakesh
-          </a>
+          </Link>
         </li>
         <li>
-          <a
-            href="#"
-            className="text-black text-lg hover:text-green-600 transition duration-300 ease-in-out"
+          <Link
+            to="/feelings"
+            className={`text-black text-lg hover:text-green-600 transition duration-300 ease-in-out
+            ${location.pathname=='/feelings'? 'active-link':''}`}
+          
           >
             Feelings
-          </a>
+          </Link>
         </li>
         <li>
-          <a
-            href="#"
-            className="text-black text-lg hover:text-green-600 transition duration-300 ease-in-out"
+          <Link
+            to="/contact" 
+            className={`text-black text-lg hover:text-green-600 transition duration-300 ease-in-out
+            ${location.pathname=='/contact'? 'active-link':''}`}
+            
           >
-            Contact Us
-          </a>
+          </Link>
         </li>
       </ul>
       {loggedInName ? 

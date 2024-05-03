@@ -1,6 +1,5 @@
 import "../styles.css";
 import Topbar from "../components/Topbar";
-
 import Slideshow from "../components/Slideshow";
 import Cardads from "../components/Cardads";
 import HeroSection from "../components/HeroSection";
