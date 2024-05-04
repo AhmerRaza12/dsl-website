@@ -1,7 +1,7 @@
 import "../styles.css";
 import PropTypes from 'prop-types'; 
 import { Link, useLocation } from "react-router-dom";
-
+import Dsllogo from '../assets/Dsl logo 150x150-new.png';
 const Navbar = ({loggedInName}) => {
   const location = useLocation();
   // const handleActiveLink = (e) => {
@@ -13,12 +13,11 @@ const Navbar = ({loggedInName}) => {
   // }
   return (
     <nav
-      className="sticky top-0 bg-white shadow-md flex items-center justify-between px-6 py-3 z-40"
+      className="sticky top-0 bg-white shadow-md flex items-center justify-between  px-3 py-1 z-40"
       style={{ marginTop: "45px" }} 
     >
-      <div className="flex items-center">
-        <img src="logo.png" alt="Logo" className="h-8 mr-4" />
-      </div>
+      <img src={Dsllogo} alt="Logo" className="mr-4 h-20"  />
+     
       <ul className="flex items-center space-x-6">
         <li>
           <Link
