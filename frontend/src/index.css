@@ -1,3 +1,34 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components{
+    .about-us-banner{
+     @apply relative h-[250px] w-full bg-about-us bg-cover bg-center p-3 flex items-center max-sm:justify-center;
+    }
+    .about-us-text{
+        @apply text-slate-50 p-5 px-10 font-sans font-bold text-4xl leading-normal relative z-10;
+    }
+    .margin{
+        @apply my-10 mx-10 max-md:my-20 max-md:mx-20;
+    }
+    .margin-top{
+        @apply mt-10 max-md:mt-20;
+    }
+    .about-sections-heading{
+        @apply text-balance font-sans text-3xl font-bold leading-10 text-black max-md:text-center;
+    }
+    .about-sections{
+        @apply relative mt-5 grid grid-cols-2 gap-2 max-md:grid-cols-1;
+    }
+    .about-sections-img{
+        @apply relative  max-md:w-full  max-sm:mx-auto max-sm:w-2/3;
+    }
+    .about-sections-second-div{
+         @apply about-sections-img h-[500px] p-3 w-full max-md:col-span-4;
+    }
+    .about-sections-second-div-img{
+        @apply h-[400px] max-md:w-full max-md:object-contain w-5/6  overflow-hidden rounded-md object-cover;
+    }
+   
+}
