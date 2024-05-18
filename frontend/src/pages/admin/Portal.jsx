@@ -1,10 +1,9 @@
 import React from 'react'
 
+
 const Portal = () => {
   return (
     <div>
-       
-
 <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-20 ">
     <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -27,10 +26,10 @@ const Portal = () => {
         <tbody>
             <tr className="odd:bg-white odd:dark:bg-gray-900  even:bg-lime-200 even:dark:bg-gray-800 border-b dark:border-gray-700">
                 <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    ABC
+                    TCS
                 </th>
                 <td className="px-6 py-4">
-                    132214xzcs
+                    DSLCXWE232
                 </td>
                 <td className="px-6 py-4">
                     Arrived
@@ -42,68 +41,69 @@ const Portal = () => {
             </tr>
             <tr className="odd:bg-white odd:dark:bg-gray-900 even:bg-lime-200 even:dark:bg-gray-800 border-b dark:border-gray-700">
                 <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    Microsoft Surface Pro
+                    Leopards Courier
                 </th>
                 <td className="px-6 py-4">
-                    White
+                    CSXWBX2312
                 </td>
                 <td className="px-6 py-4">
-                    Laptop PC
+                    Dispatched
                 </td>
                 <td className="px-6 py-4">
-                    $1999
+                    Lahore,Pakistan
                 </td>
               
             </tr>
             <tr className="odd:bg-white odd:dark:bg-gray-900 even:bg-lime-200 even:dark:bg-gray-800 border-b dark:border-gray-700">
                 <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    Magic Mouse 2
+                    TCS
                 </th>
                 <td className="px-6 py-4">
-                    Black
+                    CSXEWDF213
                 </td>
                 <td className="px-6 py-4">
-                    Accessories
+                    Arrived
                 </td>
                 <td className="px-6 py-4">
-                    $99
+                    Rawalpindi,Pakistan
                 </td>
                 
             </tr>
             <tr className="odd:bg-white odd:dark:bg-gray-900 even:bg-lime-200 even:dark:bg-gray-800 border-b dark:border-gray-700">
                 <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    Google Pixel Phone
+                    Fedex Express
                 </th>
                 <td className="px-6 py-4">
-                    Gray
+                    CGXDSRD231
                 </td>
                 <td className="px-6 py-4">
-                    Phone
+                    Dispatched
                 </td>
                 <td className="px-6 py-4">
-                    $799
+                    Karachi,Pakistan
                 </td>
                
             </tr>
             <tr>
                 <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    Apple Watch 5
+                    DHL
                 </th>
                 <td className="px-6 py-4">
-                    Red
+                    XDSXCG545
                 </td>
                 <td className="px-6 py-4">
-                    Wearables
+                    Received
                 </td>
                 <td className="px-6 py-4">
-                    $999
+                    Islamabad,Pakistan
                 </td>
            
             </tr>
         </tbody>
     </table>
 </div>
- 
+
+
     </div>
   )
 }
