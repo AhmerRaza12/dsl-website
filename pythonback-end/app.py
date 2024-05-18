@@ -10,7 +10,7 @@ from flask_cors import CORS
 import redis
 from flask_session import Session
 import os
-from appmap.flask import AppmapFlask
+# from appmap.flask import AppmapFlask
 from dotenv import load_dotenv
 
 #initialise app
@@ -24,8 +24,8 @@ secret_key = os.urandom(16)
 app.config['SECRET_KEY'] = secret_key
 
 ###################for appmaps
-appmap_flask = AppmapFlask(app)
-appmap_flask.init_app()
+# appmap_flask = AppmapFlask(app)
+# appmap_flask.init_app()
 load_dotenv()
 
 
@@ -33,7 +33,7 @@ load_dotenv()
 
 
 if __name__=="__main__":
-  os.environ['APPMAP'] = 'true'
+  # os.environ['APPMAP'] = 'true'
   app.run(host='0.0.0.0', port=5000, debug=True)
 
 

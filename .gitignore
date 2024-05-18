@@ -2,3 +2,4 @@ frontend/node_modules/
 pythonback-end/tmp
 pythonback-end/appmap*
 pythonback-end/myenv
+__pycache__
