@@ -1,6 +1,6 @@
 import "../styles.css";
 import Topbar from "../components/Topbar";
-import Slideshow from "../components/Slideshow";
+// import Slideshow from "../components/Slideshow";
 import Cardads from "../components/Cardads";
 import HeroSection from "../components/HeroSection";
 import DeliveryPartners from "../components/DeliveryPartners";
@@ -9,12 +9,13 @@ import CustomerForms from "../components/CustomerForms";
 import Deliver from "../components/Deliver";
 import MapSection from "../components/MapSection";
 import Footer from "../components/Footer";
+import NewSlideshow from "../components/NewSlideshow";
 const Homepage = () => {
   return (
     <div className="homepage">
       <Topbar />
       
-      <Slideshow className="mt-5" />
+      <NewSlideshow />
       <Cardads />
       <HeroSection />
       <CustomerForms/>
