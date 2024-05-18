@@ -1,8 +1,10 @@
 import "../styles.css";
 import PropTypes from 'prop-types'; 
-import { Link, useLocation } from "react-router-dom";
+import React from "react";
+import { Link, useLocation,  } from "react-router-dom";
 import Dsllogo from '../assets/Dsl logo 150x150-new.png';
 const Navbar = ({loggedInName}) => {
+  // const navigate = useNavigate();
   const location = useLocation();
   // const handleActiveLink = (e) => {
   //   const links = document.querySelectorAll(".active-link");
@@ -11,6 +13,7 @@ const Navbar = ({loggedInName}) => {
   //   });
   //   e.target.classList.add("active-link");
   // }
+
   return (
     <nav
       className="sticky top-0 bg-white shadow-md flex items-center justify-between  px-3 py-1 z-40"
@@ -79,9 +82,9 @@ const Navbar = ({loggedInName}) => {
       (
           <p className="text-black">Welcome, <span className="text-green-500">{loggedInName}</span></p>    
       ):(
-         <button className="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 transition duration-300 ease-in-out">
+         <Link to="/login"  className="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 transition duration-300 ease-in-out">
         Login
-      </button>
+      </Link>
       )}
     </nav>
   );

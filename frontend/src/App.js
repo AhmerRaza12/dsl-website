@@ -10,6 +10,7 @@ import Navbar from './components/Navbar';
 import Services from './pages/Services';
 import Cakesh from './pages/Cakesh';
 import Feelings from './pages/Feelings';
+import Portal from './pages/admin/Portal';
 const ScrollToTopButton = () => {
   const [showButton, setShowButton] = React.useState(false);
   const handleScroll = () => {
@@ -61,6 +62,7 @@ export default function App() {
         <Route path='/cakesh' element={<><Cakesh /><ScrollToTopButton /></>} />
         <Route path='/feelings' element={<><Feelings /><ScrollToTopButton /></>} />
         <Route path='/signup' element={<><SignUp /><ScrollToTopButton /></>} />
+        <Route path='/admin/table' element={<><Portal /> <ScrollToTopButton/></>}       />
       </Routes>
     </Router>
   );
