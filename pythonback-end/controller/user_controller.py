@@ -1,8 +1,8 @@
 from flask import Blueprint
 userbp = Blueprint("user_controller", __name__)
-from model.usermodel import usermodel
+from model.usermodel import UserModel
 from flask import request
-usr_modl_Obj = usermodel()
+usr_modl_Obj = UserModel()
 
 
 @userbp.route("/user/signup", methods= ["POST"])

@@ -4,8 +4,8 @@
 from flask import Blueprint
 admin_panel_bp = Blueprint("admin_panel_controller", __name__)
 
-from model.admin_panel_model import admin_panel_model
-admin_panel_modl_Obj = admin_panel_model()
+from model.admin_panel_model import AdminPanelModel
+admin_panel_modl_Obj = AdminPanelModel()
 
 @admin_panel_bp.route("/admin/all_quotes")
 def fetch_quotes():

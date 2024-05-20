@@ -1,8 +1,8 @@
 from flask import Blueprint
 forms_bp = Blueprint("forms_submit_controller", __name__)
-from model.forms_submit_model import forms_submit_model
+from model.forms_submit_model import FormsSubmitModel
 from flask import request
-forms_modl_Obj = forms_submit_model()
+forms_modl_Obj = FormsSubmitModel()
 
 
 @forms_bp.route("/submit/quote", methods= ["POST"])

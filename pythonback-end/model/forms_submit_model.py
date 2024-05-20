@@ -1,132 +1,106 @@
-import pyodbc
-import os
 from flask import jsonify
 from datetime import datetime
+from db_connect import db
+from sqlalchemy.exc import SQLAlchemyError
+from sqlalchemy import text
 
+class FormsSubmitModel:
 
-class forms_submit_model():
-
-    def submit_quote(self,data):
-        ins_query=f"""Insert into request_quote(type_quote,name,email,phone,
-                    from_place,to_place,shipment_type,product_type,service_type,
-                    weight,pcs,length,width,height,request_time) 
-                    values
-                    (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"""
-        
-
-        conn=pyodbc.connect(os.getenv("CONN_STR"))
-        crs=conn.cursor()
+    def submit_quote(self, data):
+        ins_query = text("""
+            INSERT INTO request_quote(type_quote, name, email, phone, from_place, to_place, shipment_type,
+                                      product_type, service_type, weight, pcs, length, width, height, request_time)
+            VALUES (:type_quote, :name, :email, :phone, :from_place, :to_place, :shipment_type,
+                    :product_type, :service_type, :weight, :pcs, :length, :width, :height, :request_time)
+        """)
 
         try:
-            crs.execute(ins_query,(data["type_quote"],data["name"],data["email"],data["phone"],data["from_place"],data["to_place"],
-                    data["shipment_type"],data["product_type"],data["service_type"],data["weight"],data["pcs"],data["length"],
-                    data["width"],data["height"], datetime.now()))
-            conn.commit()
+            db.session.execute(ins_query, {
+                "type_quote": data["type_quote"], "name": data["name"], "email": data["email"], "phone": data["phone"],
+                "from_place": data["from_place"], "to_place": data["to_place"], "shipment_type": data["shipment_type"],
+                "product_type": data["product_type"], "service_type": data["service_type"], "weight": data["weight"],
+                "pcs": data["pcs"], "length": data["length"], "width": data["width"], "height": data["height"],
+                "request_time": datetime.now()
+            })
+            db.session.commit()
             print("Query executed successfully!")
-            conn.close()
             return jsonify("Form submitted successfully."), 200
-        except Exception as e:
+        except SQLAlchemyError as e:
             print(f"Error executing query: {e}")
-            conn.close()
+            db.session.rollback()
             return jsonify("Form failed to submit."), 422
-    
 
-    def submit_pickup(self,data):
+    def submit_pickup(self, data):
+        ins_query = text("""
+            INSERT INTO request_pickup (name, phone, email, from_place, address, weight, pcs, length, width, height, request_time)
+            VALUES (:name, :phone, :email, :from_place, :address, :weight, :pcs, :length, :width, :height, :request_time)
+        """)
 
-        ins_query = """INSERT INTO request_pickup ([name], [phone], [email], [from_place],
-               [address], [weight], [pcs], [length], [width], [height], [request_time])
-               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"""
-        
-        conn=pyodbc.connect(os.getenv("CONN_STR"))
-        crs=conn.cursor()
         try:
-            crs.execute(ins_query, (data["name"], data["phone"], data["email"], data["from_place"],
-                        data["address"], data["weight"], data["pcs"], data["length"],
-                        data["width"], data["height"], datetime.now()))
-            conn.commit()
+            db.session.execute(ins_query, {
+                "name": data["name"], "phone": data["phone"], "email": data["email"], "from_place": data["from_place"],
+                "address": data["address"], "weight": data["weight"], "pcs": data["pcs"], "length": data["length"],
+                "width": data["width"], "height": data["height"], "request_time": datetime.now()
+            })
+            db.session.commit()
             print("Query executed successfully!")
-            conn.close()
             return jsonify("Form submitted successfully."), 200
-        except Exception as e:
+        except SQLAlchemyError as e:
             print(f"Error executing query: {e}")
-            conn.close()
+            db.session.rollback()
             return jsonify("Form failed to submit."), 422
-        
-        
-       
-    
 
-    def submit_account(self,data):
-
-        items_dict = ["clothing", "books", "perfumes_cosmetics", "watches", "home_decor", "sports", "home_appliances", "health_fitness", "mobiles_tablets", "computer_peripherals"]
-        product_range = ["clothing","books","computer","perfumes"]
-        # print(product_range)
-        result_dict = {}
-
-
-        for item in items_dict:
-    # Extract item name from the key
-            item_name = item.split('_')[0]
-            is_present = any(item_name in product for product in product_range)
-            result_dict[item] = True if is_present else False
-
-    
-
-
-        result_dict_filtered = {key: value for key, value in result_dict.items() if value == True}
-
+    def submit_account(self, data):
+        items_dict = ["clothing", "books", "perfumes_cosmetics", "watches", "home_decor", "sports",
+                      "home_appliances", "health_fitness", "mobiles_tablets", "computer_peripherals"]
+        product_range = ["clothing", "books", "computer", "perfumes"]
+        result_dict = {item: item.split('_')[0] in product_range for item in items_dict}
+        result_dict_filtered = {key: value for key, value in result_dict.items() if value}
 
         columns = ', '.join(result_dict_filtered.keys())
-        # values = '- '.join(str(value) for value in result_dict_filtered.values())
-
-
-        comma_question_marks = ', '.join(['?'] * len(result_dict_filtered))
-        prod_ins_query = f"Insert into product_range ({columns}) values ({comma_question_marks})" 
-
-
-
-
- 
-        conn=pyodbc.connect(os.getenv("CONN_STR"))
-        crs=conn.cursor()
-        values = tuple(result_dict_filtered.values())
-        prod_id= None
-        try:
-
-            crs.execute(prod_ins_query,(values))
-            conn.commit()
-            print("Query executed successfully!")
-
-        except Exception as e:
-            print(f"Error executing query: {e}")
+        comma_question_marks = ', '.join([f':{key}' for key in result_dict_filtered])
+        prod_ins_query = text(f"INSERT INTO product_range ({columns}) VALUES ({comma_question_marks})")
 
         try:
-            fetch_prod_range = "SELECT TOP 1 id_product_range FROM product_range ORDER BY id_product_range DESC"
-            crs.execute(fetch_prod_range)
-            prod_id= crs.fetchone() 
-            print("Query executed successfully!")
-
-        except Exception as e:
-            print(f"Error executing query: {e}")
-
- 
-
-        ins_query= f"""Insert into request_an_account(company_name, full_name, ntn, sales_tax_num, landline, company_phone, mobile_num,
-                    email, cnic, url_page, pickup_address, city, nature_of_business, number_months_in_business,
-                    ship_per_week,id_product_range, request_time)
-                    values
-                    (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,? ,? ,?)"""
+            db.session.execute(prod_ins_query, result_dict_filtered)
+            db.session.commit()
+            print("Product range query executed successfully!")
+        except SQLAlchemyError as e:
+            print(f"Error executing product range query: {e}")
+            db.session.rollback()
+            return jsonify("Form failed to submit."), 422
 
         try:
-            crs.execute(ins_query, (data["company_name"], data["full_name"], data["ntn"], data["sales_tax_num"], data["landline"],
-                    data["company_phone"],data["mobile_num"], data["email"], data["cnic"], data["url_page"], data["pickup_address"],
-                    data["city"], data["nature_of_business"], data["number_months_in_business"], data["ship_per_week"],
-                    prod_id.id_product_range,  datetime.now()))
-            conn.commit()
-            print("Query executed successfully!")
-            conn.close()
+            fetch_prod_range = text("SELECT id_product_range FROM product_range ORDER BY id_product_range DESC LIMIT 1")
+            result = db.session.execute(fetch_prod_range).fetchone()
+            prod_id = result['id_product_range'] if result else None
+            print("Fetch product range query executed successfully!")
+        except SQLAlchemyError as e:
+            print(f"Error fetching product range id: {e}")
+            return jsonify("Form failed to submit."), 422
+
+        ins_query = text("""
+            INSERT INTO request_an_account(company_name, full_name, ntn, sales_tax_num, landline, company_phone, mobile_num,
+                                           email, cnic, url_page, pickup_address, city, nature_of_business, number_months_in_business,
+                                           ship_per_week, id_product_range, request_time)
+            VALUES (:company_name, :full_name, :ntn, :sales_tax_num, :landline, :company_phone, :mobile_num,
+                    :email, :cnic, :url_page, :pickup_address, :city, :nature_of_business, :number_months_in_business,
+                    :ship_per_week, :id_product_range, :request_time)
+        """)
+
+        try:
+            db.session.execute(ins_query, {
+                "company_name": data["company_name"], "full_name": data["full_name"], "ntn": data["ntn"], 
+                "sales_tax_num": data["sales_tax_num"], "landline": data["landline"], "company_phone": data["company_phone"], 
+                "mobile_num": data["mobile_num"], "email": data["email"], "cnic": data["cnic"], 
+                "url_page": data["url_page"], "pickup_address": data["pickup_address"], "city": data["city"], 
+                "nature_of_business": data["nature_of_business"], "number_months_in_business": data["number_months_in_business"], 
+                "ship_per_week": data["ship_per_week"], "id_product_range": prod_id, "request_time": datetime.now()
+            })
+            db.session.commit()
+            print("Account request query executed successfully!")
             return jsonify("Form submitted successfully."), 200
-        except Exception as e:
-            print(f"Error executing query: {e}")
-            conn.close()
+        except SQLAlchemyError as e:
+            print(f"Error executing account request query: {e}")
+            db.session.rollback()
             return jsonify("Form failed to submit."), 422
