@@ -9,13 +9,13 @@ import CustomerForms from "../components/CustomerForms";
 import Deliver from "../components/Deliver";
 import MapSection from "../components/MapSection";
 import Footer from "../components/Footer";
-import NewSlideshow from "../components/NewSlideshow";
+import Slideshow from "../components/Slideshow";
 const Homepage = () => {
   return (
     <div className="homepage">
       <Topbar />
       
-      <NewSlideshow />
+      <Slideshow />
       <Cardads />
       <HeroSection />
       <CustomerForms/>
