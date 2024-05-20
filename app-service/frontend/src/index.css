@@ -6,6 +6,9 @@
     .about-us-banner{
      @apply relative h-[250px] w-full bg-about-us bg-cover bg-center p-3 flex items-center max-sm:justify-center;
     }
+    .services-banner{
+     @apply relative h-[250px] w-full bg-services bg-cover bg-center p-3 flex items-center max-sm:justify-center;
+    }
     .about-us-text{
         @apply text-slate-50 p-5 px-10 font-sans font-bold text-4xl leading-normal relative z-10;
     }
