@@ -18,6 +18,9 @@
     .margin-top{
         @apply mt-10 max-md:mt-20;
     }
+    .margin-left-right{
+        @apply mx-20 max-md:mx-10;
+    }
     .about-sections-heading{
         @apply text-balance font-sans text-3xl font-bold leading-10 text-black max-md:text-xl max-md:text-center;
     }
