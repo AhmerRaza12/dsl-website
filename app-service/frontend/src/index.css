@@ -39,5 +39,11 @@
     .counter-section-p{
         @apply text-black text-center text-2xl  font-medium font-sans uppercase tracking-wide text-balance;
     }
+    .active-tab{
+        @apply bg-lime-400 text-black rounded-lg;
+    }
+    .inactive-tab{
+        @apply duration-200 hover:font-bold hover:bg-transparent hover:text-black  hover:ring-2 hover:ring-lime-400  hover:border-lime-500;
+    }
    
 }
