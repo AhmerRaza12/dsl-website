@@ -46,4 +46,28 @@
         @apply duration-200 hover:font-bold hover:bg-transparent hover:text-black  hover:ring-2 hover:ring-lime-400  hover:border-lime-500;
     }
    
+    .logo-translate {
+        @apply animate-pulse text-lime-500;
+    }
+      
 }
+
+.checkbox{
+    color: black;
+}
+.checkbox:hover{
+    color:lime;
+    transition: 0.5s;
+}
+.logo-translate {
+    animation: logoTranslate 0.5s ease-in-out alternate infinite;
+   
+  }
+  @keyframes logoTranslate {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(5px);
+    }
+  }
