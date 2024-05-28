@@ -1,268 +1,76 @@
-import React, {useState}from "react";
-import IceCreamCupcake from "../../assets/cakesh/cupcakes/ICE-CREAM.png";
+import React, { useState } from "react";
 import { CiCircleCheck } from "react-icons/ci";
+import IceCreamCupcake from "../../assets/cakesh/cupcakes/ICE-CREAM.png";
+import BabyBorn from "../../assets/cakesh/cupcakes/BABY-BORN.png";
+import Biscuitsinside from "../../assets/cakesh/cupcakes/BISCUITS-INSIDE.png";
+import CreamCakes from "../../assets/cakesh/cupcakes/cake-34.png";
+import CustomizedCupcake from "../../assets/cakesh/cupcakes/CUSTOMIZED-CUP-CAKES.png";
+import PlainFlower from "../../assets/cakesh/cupcakes/PLAIN-FLOWER.png";
+import PurpleCupCake from "../../assets/cakesh/cupcakes/PURPLE-CUPCAKE.png";
+import RedVelvet from "../../assets/cakesh/cupcakes/RED-VELVET.png";
+import SkyCreamChocolate from "../../assets/cakesh/cupcakes/SKY-CREAM-CHOCOLATE.png";
+import StrawberryCupCake from "../../assets/cakesh/cupcakes/STRAWBERRY.png";
+import TruityFruity from "../../assets/cakesh/cupcakes/TRUITY-FRUITY.png";
+import VanillaCupCake from "../../assets/cakesh/cupcakes/VANILA-HEART.png";
 
 const CupCakeGrid = () => {
-    const [checkbtn, setCheckBtn] = useState(false);
-    const [tooltipVisible, setTooltipVisible] = useState(false);
-    
-    const handleBtnClick = () => {
+    const [tooltipVisible, setTooltipVisible] = useState(Array(12).fill(false)); 
+
+    // now we need to make a list of all the images with the cupcake names
+
+    const cupcakeImages = [IceCreamCupcake, BabyBorn, Biscuitsinside, CreamCakes, CustomizedCupcake, PlainFlower, PurpleCupCake, RedVelvet, SkyCreamChocolate, StrawberryCupCake, TruityFruity, VanillaCupCake];
+    const cupcakeNames = ["Ice Cream", "Baby Born", "Biscuits Inside", "Cream Cakes", "Customized Cup Cake", "Plain Flower", "Purple Cup Cake", "Red Velvet", "Sky Cream Chocolate", "Strawberry Cup Cake", "Truity Fruity", "Vanilla Cup Cake"];
+
+    const handleBtnClick = (index) => {
         console.log("added");
-        setCheckBtn(true);
-        setTooltipVisible(true);
+        const newTooltipVisible = [...tooltipVisible]; 
+        newTooltipVisible[index] = true; 
+        setTooltipVisible(newTooltipVisible);
         setTimeout(() => {
-            setCheckBtn(false);
-            setTooltipVisible(false);
-        }, 2000); 
+            const newTooltipVisible = [...tooltipVisible]; 
+            newTooltipVisible[index] = false; 
+            setTooltipVisible(newTooltipVisible);
+        }, 2000);
     };
-  return (
-    <div>
-      <section
-        id="Projects"
-        className="w-fit mx-auto grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 justify-items-center justify-center gap-10 mt-10"
-      >
-        {/* Card */}
-        <div className="relative w-56 bg-white shadow-md rounded-xl h-72">
-          <img
-            src={IceCreamCupcake}
-            alt="Product"
-            className="h-56 w-56 object-cover rounded-t-xl"
-          />
-          <div className="px-4 py-3 w-56">
-            <div className="flex justify-between items-center">
-              <div className="relative">
-                <p className="text-lg font-bold text-lime-500 truncate block uppercase hover:text-lime-500 duration-500">
-                  Ice Cream
-                </p>
-                <div className="absolute bottom-0 left-0 w-2/5 border-b-2 border-black"></div>
-              </div>
-              <button className="relative hover:text-lime-500 duration-500" onClick={handleBtnClick}>
-                <CiCircleCheck
-                  className={`hover:text-lime-500 duration-500 ${checkbtn ? "logo-translate" : ""}`}
-                  style={{ fontSize: "34px" }}
-                />
-                {tooltipVisible && (
-                  <div className="absolute top-0 right-0 mb-5 font-medium bg-lime-500 text-white text-xs px-3 py-1 rounded-lg transition-opacity duration-300">
-                    Added successfully
-                  </div>
-                )}
-              </button>
-            </div>
-          </div>
-        </div>
-        {/* Card */}
-        <div className="w-56 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
-          <a href="#">
-            <img
-              src="https://images.unsplash.com/photo-1651950519238-15835722f8bb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8Mjh8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-              alt="Product"
-              className="h-56 w-56 object-cover rounded-t-xl"
-            />
-            <div className="px-4 py-3 w-56">
-              <span className="text-gray-400 mr-3 uppercase text-xs">
-                Brand
-              </span>
-              <p className="text-lg font-bold text-black truncate block capitalize">
-                Product Name
-              </p>
-              <div className="flex items-center">
-                <p className="text-lg font-semibold text-black cursor-auto my-3">
-                  $149
-                </p>
-                <del>
-                  <p className="text-sm text-gray-600 cursor-auto ml-2">$199</p>
-                </del>
-                <div className="ml-auto">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    fill="currentColor"
-                    className="bi bi-bag-plus"
-                    viewBox="0 0 16 16"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z"
-                    />
-                    <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
-                  </svg>
-                </div>
-              </div>
-            </div>
-          </a>
-        </div>
-        {/* Card */}
-        <div className="w-56 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
-          <a href="#">
-            <img
-              src="https://images.unsplash.com/photo-1651950537598-373e4358d320?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8MjV8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-              alt="Product"
-              className="h-56 w-56 object-cover rounded-t-xl"
-            />
-            <div className="px-4 py-3 w-56">
-              <span className="text-gray-400 mr-3 uppercase text-xs">
-                Brand
-              </span>
-              <p className="text-lg font-bold text-black truncate block capitalize">
-                Product Name
-              </p>
-              <div className="flex items-center">
-                <p className="text-lg font-semibold text-black cursor-auto my-3">
-                  $149
-                </p>
-                <del>
-                  <p className="text-sm text-gray-600 cursor-auto ml-2">$199</p>
-                </del>
-                <div className="ml-auto">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    fill="currentColor"
-                    className="bi bi-bag-plus"
-                    viewBox="0 0 16 16"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z"
-                    />
-                    <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
-                  </svg>
-                </div>
-              </div>
-            </div>
-          </a>
-        </div>
-        {/* Card */}
-        <div className="w-56 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
-          <a href="#">
-            <img
-              src="https://images.unsplash.com/photo-1651950540805-b7c71869e689?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8Mjl8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-              alt="Product"
-              className="h-56 w-56 object-cover rounded-t-xl"
-            />
-            <div className="px-4 py-3 w-72">
-              <span className="text-gray-400 mr-3 uppercase text-xs">
-                Brand
-              </span>
-              <p className="text-lg font-bold text-black truncate block capitalize">
-                Product Name
-              </p>
-              <div className="flex items-center">
-                <p className="text-lg font-semibold text-black cursor-auto my-3">
-                  $149
-                </p>
-                <del>
-                  <p className="text-sm text-gray-600 cursor-auto ml-2">$199</p>
-                </del>
-                <div className="ml-auto">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    fill="currentColor"
-                    className="bi bi-bag-plus"
-                    viewBox="0 0 16 16"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z"
-                    />
-                    <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
-                  </svg>
-                </div>
-              </div>
-            </div>
-          </a>
-        </div>
 
-        <div className="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
-          <a href="#">
-            <img
-              src="https://images.unsplash.com/photo-1649261191624-ca9f79ca3fc6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8NDd8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-              alt="Product"
-              className="h-80 w-72 object-cover rounded-t-xl"
-            />
-            <div className="px-4 py-3 w-72">
-              <span className="text-gray-400 mr-3 uppercase text-xs">
-                Brand
-              </span>
-              <p className="text-lg font-bold text-black truncate block capitalize">
-                Product Name
-              </p>
-              <div className="flex items-center">
-                <p className="text-lg font-semibold text-black cursor-auto my-3">
-                  $149
-                </p>
-                <del>
-                  <p className="text-sm text-gray-600 cursor-auto ml-2">$199</p>
-                </del>
-                <div className="ml-auto">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    fill="currentColor"
-                    className="bi bi-bag-plus"
-                    viewBox="0 0 16 16"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z"
-                    />
-                    <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
-                  </svg>
-                </div>
-              </div>
-            </div>
-          </a>
+    return (
+        <div>
+            <section
+                id="Projects"
+                className="w-fit mx-auto grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 justify-items-center justify-center gap-10 "
+            >
+                {cupcakeImages.map((cupcake, index) => (
+                    <div key={index} className="relative w-56 bg-white shadow-md rounded-xl h-80">
+                        <img
+                            src={cupcake}
+                            alt="Product"
+                            className="h-56 w-56 object-cover rounded-t-xl"
+                        />
+                        <div className="px-4 py-3 w-56">
+                            <div className="flex justify-between items-center">
+                                <div className="relative">
+                                    <p className="text-lg font-bold text-lime-500  block uppercase hover:text-lime-500 duration-500">
+                                        {cupcakeNames[index]}
+                                    </p>
+                                    <div className="absolute bottom-0 left-0 w-2/5 border-b-2 border-black"></div>
+                                </div>
+                                <button className="relative hover:text-lime-500 duration-500" onClick={() => handleBtnClick(index)}>
+                                    <CiCircleCheck
+                                        className={`hover:text-lime-500 duration-500 ${tooltipVisible[index] ? "logo-translate" : ""}`}
+                                        style={{ fontSize: "34px" }}
+                                    />
+                                    {tooltipVisible[index] && (
+                                        <div className="absolute top-0 right-0 mb-5 font-medium bg-lime-500 text-black shadowm-md border-2 border-slate-500 text-xs px-3 py-1 rounded-lg transition-opacity duration-300">
+                                            Added successfully
+                                        </div>
+                                    )}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </section>
         </div>
-
-        <div className="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
-          <a href="#">
-            <img
-              src="https://images.unsplash.com/photo-1649261191606-cb2496e97eee?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8NDR8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-              alt="Product"
-              className="h-80 w-72 object-cover rounded-t-xl"
-            />
-            <div className="px-4 py-3 w-72">
-              <span className="text-gray-400 mr-3 uppercase text-xs">
-                Brand
-              </span>
-              <p className="text-lg font-bold text-black truncate block capitalize">
-                Product Name
-              </p>
-              <div className="flex items-center">
-                <p className="text-lg font-semibold text-black cursor-auto my-3">
-                  $149
-                </p>
-                <del>
-                  <p className="text-sm text-gray-600 cursor-auto ml-2">$199</p>
-                </del>
-                <div className="ml-auto">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    fill="currentColor"
-                    className="bi bi-bag-plus"
-                    viewBox="0 0 16 16"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z"
-                    />
-                    <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
-                  </svg>
-                </div>
-              </div>
-            </div>
-          </a>
-        </div>
-      </section>
-    </div>
-  );
+    );
 };
-
 export default CupCakeGrid;
