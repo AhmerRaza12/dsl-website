@@ -12,65 +12,90 @@ import SkyCreamChocolate from "../../assets/cakesh/cupcakes/SKY-CREAM-CHOCOLATE.
 import StrawberryCupCake from "../../assets/cakesh/cupcakes/STRAWBERRY.png";
 import TruityFruity from "../../assets/cakesh/cupcakes/TRUITY-FRUITY.png";
 import VanillaCupCake from "../../assets/cakesh/cupcakes/VANILA-HEART.png";
+import PropTypes from 'prop-types';
 
-const CupCakeGrid = () => {
+
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+
+const CupCakeGrid = ({ setCupcakeNameslist, setCupcakeslist }) => {
     const [tooltipVisible, setTooltipVisible] = useState(Array(12).fill(false)); 
 
-    // now we need to make a list of all the images with the cupcake names
-
-    const cupcakeImages = [IceCreamCupcake, BabyBorn, Biscuitsinside, CreamCakes, CustomizedCupcake, PlainFlower, PurpleCupCake, RedVelvet, SkyCreamChocolate, StrawberryCupCake, TruityFruity, VanillaCupCake];
-    const cupcakeNames = ["Ice Cream", "Baby Born", "Biscuits Inside", "Cream Cakes", "Customized Cup Cake", "Plain Flower", "Purple Cup Cake", "Red Velvet", "Sky Cream Chocolate", "Strawberry Cup Cake", "Truity Fruity", "Vanilla Cup Cake"];
-
-    const handleBtnClick = (index) => {
+    // Define cupcake data
+    const cupcakeData = [
+        { name: "Ice Cream", image: IceCreamCupcake },
+        { name: "Baby Born", image: BabyBorn },
+        { name: "Biscuits Inside", image: Biscuitsinside },
+        { name: "Cream Cakes", image: CreamCakes },
+        { name: "Customized Cup Cake", image: CustomizedCupcake },
+        { name: "Plain Flower", image: PlainFlower },
+        { name: "Purple Cup Cake", image: PurpleCupCake },
+        { name: "Red Velvet", image: RedVelvet },
+        { name: "Sky Cream Chocolate", image: SkyCreamChocolate },
+        { name: "Strawberry Cup Cake", image: StrawberryCupCake },
+        { name: "Truity Fruity", image: TruityFruity },
+        { name: "Vanilla Cup Cake", image: VanillaCupCake },
+    ];
+    
+    const handleBtnClick = (cupcake, index) => {
         console.log("added");
-        const newTooltipVisible = [...tooltipVisible]; 
-        newTooltipVisible[index] = true; 
-        setTooltipVisible(newTooltipVisible);
+        setCupcakeNameslist(prevList => [...prevList, cupcake.name]);
+        setCupcakeslist(prevList => [...prevList, cupcake.image]);
+        
+        setTooltipVisible(prev => prev.map((item, i) => i === index ? true : item));
+        
         setTimeout(() => {
-            const newTooltipVisible = [...tooltipVisible]; 
-            newTooltipVisible[index] = false; 
-            setTooltipVisible(newTooltipVisible);
+            setTooltipVisible(prev => prev.map((item, i) => i === index ? false : item));
         }, 2000);
     };
+    
+
+
 
     return (
-        <div>
-            <section
-                id="Projects"
-                className="w-fit mx-auto grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 justify-items-center justify-center gap-10 "
-            >
-                {cupcakeImages.map((cupcake, index) => (
-                    <div key={index} className="relative w-56 bg-white shadow-md rounded-xl h-80">
-                        <img
-                            src={cupcake}
-                            alt="Product"
-                            className="h-56 w-56 object-cover rounded-t-xl"
-                        />
-                        <div className="px-4 py-3 w-56">
-                            <div className="flex justify-between items-center">
-                                <div className="relative">
-                                    <p className="text-lg font-bold text-lime-500  block uppercase hover:text-lime-500 duration-500">
-                                        {cupcakeNames[index]}
-                                    </p>
-                                    <div className="absolute bottom-0 left-0 w-2/5 border-b-2 border-black"></div>
-                                </div>
-                                <button className="relative hover:text-lime-500 duration-500" onClick={() => handleBtnClick(index)}>
-                                    <CiCircleCheck
-                                        className={`hover:text-lime-500 duration-500 ${tooltipVisible[index] ? "logo-translate" : ""}`}
-                                        style={{ fontSize: "34px" }}
-                                    />
-                                    {tooltipVisible[index] && (
-                                        <div className="absolute top-0 right-0 mb-5 font-medium bg-lime-500 text-black shadowm-md border-2 border-slate-500 text-xs px-3 py-1 rounded-lg transition-opacity duration-300">
-                                            Added successfully
-                                        </div>
-                                    )}
-                                </button>
+        <div className="w-full  mx-auto ">
+        < Carousel  showArrows={false}  swipeable={true} showThumbs={false}>
+            {cupcakeData.map((cupcake, index) => (
+                <div key={index}  className=" h-[300px] ">
+                <div className="relative w-56 bg-white shadow-md rounded-xl h-72 ">
+                    <img
+                        src={cupcake.image}
+                        alt="Product"
+                        className="h-56 w-56 object-cover rounded-t-xl"
+                    />
+                    <div className="px-4 py-3 w-56">
+                        <div className="flex justify-between items-center">
+                            <div className="relative">
+                                <p className="text-lg font-bold text-lime-500  block uppercase hover:text-lime-500 duration-500">
+                                    {cupcake.name}
+                                </p>
+                                <div className="absolute bottom-0 left-0 w-2/5 border-b-2 border-black"></div>
                             </div>
+                            <button className="relative hover:text-lime-500 duration-500" onClick={() => handleBtnClick(cupcake, index)}>
+                                <CiCircleCheck
+                                    className={`hover:text-lime-500 duration-500 ${tooltipVisible[index] ? "logo-translate" : ""}`}
+                                    style={{ fontSize: "34px" }}
+                                />
+                                {tooltipVisible[index] && (
+                                    <div className="absolute top-0 right-0 mb-5 font-medium bg-lime-500 text-black shadowm-md border-2 border-slate-500 text-xs px-3 py-1 rounded-lg transition-opacity duration-300">
+                                        Added successfully
+                                    </div>
+                                )}
+                            </button>
                         </div>
                     </div>
-                ))}
-            </section>
+                </div>
+                </div>
+            ))}
+        </Carousel>
         </div>
     );
 };
+
+CupCakeGrid.propTypes = {
+    setCupcakeNameslist: PropTypes.func.isRequired,
+    setCupcakeslist: PropTypes.func.isRequired
+};
+
 export default CupCakeGrid;
+

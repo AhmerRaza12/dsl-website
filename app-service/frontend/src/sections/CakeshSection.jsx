@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CakeshImg from "../assets/CAKESH LOGO .png";
 import SimpleCake from "../assets/cakesh/CREAM-FLOWERS.png";
 import PastriesImg from "../assets/cakesh/PINEAPPLE.png";
@@ -8,11 +8,42 @@ import CupCakeGrid from "../utilities/Cakesh/CupCakeGrid";
 
 const CakeshSection = () => {
   const [activeTab, setActiveTab] = useState(1);
+  const [cupcakeslist, setCupcakeslist] = useState([]);
+  const [cupcakeNameslist, setCupcakeNameslist] = useState([]);
+  const [quantities, setQuantities] = useState([]);
+
+  useEffect(() => {
+    setQuantities(Array(cupcakeslist.length).fill(1));
+  }, [cupcakeslist]);
+
+  useEffect(() => {
+    console.log("Cupcakes list:", cupcakeslist);
+    console.log("Cupcake names list:", cupcakeNameslist);
+    console.log("Quantities:", quantities);
+  }, [cupcakeslist, cupcakeNameslist, quantities]);
 
   const handleTabClick = (index) => {
     if (activeTab !== index) {
       setActiveTab(index);
     }
+  };
+
+  const handleDelete = (index) => {
+    console.log("deleted");
+    setCupcakeslist(cupcakeslist.filter((_, i) => i !== index));
+    setCupcakeNameslist(cupcakeNameslist.filter((_, i) => i !== index));
+  };
+
+  const handleIncrement = (index) => {
+    setQuantities((prevQuantities) =>
+      prevQuantities.map((qty, i) => (i === index ? qty + 1 : qty))
+    );
+  };
+
+  const handleDecrement = (index) => {
+    setQuantities((prevQuantities) =>
+      prevQuantities.map((qty, i) => (i === index && qty > 1 ? qty - 1 : qty))
+    );
   };
 
   return (
@@ -83,7 +114,7 @@ const CakeshSection = () => {
                 <img
                   src={PastriesImg}
                   loading="lazy"
-                  alt="Pastries Image"
+                  alt="Pastries"
                   className="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
                 />
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50"></div>
@@ -98,7 +129,7 @@ const CakeshSection = () => {
                 <img
                   src={ThemedCakeImg}
                   loading="lazy"
-                  alt="Photo by Martin Sanchez"
+                  alt="Themed cake"
                   className="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
                 />
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50"></div>
@@ -113,7 +144,7 @@ const CakeshSection = () => {
                 <img
                   src={CupcakesImg}
                   loading="lazy"
-                  alt="Photo by Lorenzo Herrera"
+                  alt="Cupcakes"
                   className="absolute inset-0 h-full w-full object-contain object-center transition duration-200 group-hover:scale-110"
                 />
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50"></div>
@@ -131,117 +162,126 @@ const CakeshSection = () => {
             Place your Order
           </span>
         </h1>
-        <section className="md:flex sm:flex flex lg:flex md:flex-col sm:flex-col flex-col lg:flex-col pb-[80px]  md:items-stretch sm:items-stretch items-stretch lg:items-start md:flex-nowrap sm:flex-nowrap flex-nowrap lg:flex-nowrap md:w-[auto] sm:w-[auto] w-[auto] lg:w-auto md:h-[auto] sm:h-[auto] h-[auto] lg:h-auto md:overflow-visible sm:overflow-visible overflow-visible lg:overflow-auto md:static sm:static static lg:static">
+        <section className="flex flex-col lg:items-start pb-[80px] items-stretch overflow-auto">
           <div className="flex flex-row gap-2 items-center justify-center flex-wrap border-2 rounded-xl w-fit mx-auto px-6 py-3 max-sm:py-1 max-sm:border-none bg-green-50 max-sm:bg-white">
             <button
               onClick={() => handleTabClick(1)}
               type="button"
-              className={`flex rounded-lg uppercase flex-row items-center justify-center focus:outline-none border-none px-3 py-2 ${
+              className={`flex rounded-lg uppercase flex-row items-center justify-center focus:outline-none px-3 py-2 ${
                 activeTab === 1 ? "active-tab" : "inactive-tab"
-              }  `}
+              }`}
             >
               <span className="text-md font-normal">Cupcake</span>
             </button>
             <button
               onClick={() => handleTabClick(2)}
               type="button"
-              className={`flex rounded-lg uppercase flex-row items-center justify-center focus:outline-none  px-3 py-2 ${
+              className={`flex rounded-lg uppercase flex-row items-center justify-center focus:outline-none px-3 py-2 ${
                 activeTab === 2 ? "active-tab" : "inactive-tab"
-              }  `}
+              }`}
             >
               <span className="text-md font-normal">Customized Cake</span>
             </button>
             <button
               onClick={() => handleTabClick(3)}
               type="button"
-              className={`flex rounded-lg uppercase flex-row items-center justify-center focus:outline-none border-none px-3 py-2 ${
+              className={`flex rounded-lg uppercase flex-row items-center justify-center focus:outline-none px-3 py-2 ${
                 activeTab === 3 ? "active-tab" : "inactive-tab"
-              }  `}
+              }`}
             >
               <span className="text-md font-normal">Farmaish Cake</span>
             </button>
             <button
               onClick={() => handleTabClick(4)}
               type="button"
-              className={`flex rounded-lg uppercase flex-row items-center justify-center focus:outline-none border-none px-3 py-2 ${
+              className={`flex rounded-lg uppercase flex-row items-center justify-center focus:outline-none px-3 py-2 ${
                 activeTab === 4 ? "active-tab" : "inactive-tab"
-              }  `}
+              }`}
             >
-              <span className="text-md font-normal">pastry</span>
+              <span className="text-md font-normal">Pastry</span>
             </button>
             <button
               onClick={() => handleTabClick(5)}
               type="button"
-              className={`flex rounded-lg uppercase flex-row items-center justify-center focus:outline-none border-none px-3 py-2 ${
+              className={`flex rounded-lg uppercase flex-row items-center justify-center focus:outline-none px-3 py-2 ${
                 activeTab === 5 ? "active-tab" : "inactive-tab"
-              } `}
+              }`}
             >
-              <span className="text-md font-normal">simple cake</span>
+              <span className="text-md font-normal">Simple Cake</span>
             </button>
           </div>
-          
-          
-
+          {activeTab === 1 && (
+            <CupCakeGrid
+              setCupcakeslist={setCupcakeslist}
+              setCupcakeNameslist={setCupcakeNameslist}
+            />
+          )}
         </section>
-        {/* show cupcake grid below the tabs when cupcake/ tab 1 is clicked */}
-        {activeTab === 1 && <CupCakeGrid />}
       </section>
       <section className="margin">
-      <div className="flex items-center justify-center p-12 gap-4">
-      <div className="bg-gray-100 h-screen py-8 w-1/2">
-    <div className="container mx-auto px-4">
-        <h1 className="text-2xl font-semibold mb-4 text-center">Order Details</h1>
-        <div className="flex flex-col md:flex-row gap-4">
-            
-                <div className="bg-white rounded-lg shadow-md p-4 mb- w-full">
-                    <table className="w-full">
-                        <thead>
-                            <tr>
-                                <th className="text-left font-semibold">Product</th>
-                                
-                                <th className="text-left font-semibold">Quantity</th>
-                                
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td className="py-4">
-                                    <div className="flex items-center">
-                                        <img className="h-16 w-16 mr-4" src="https://via.placeholder.com/150" alt="Product image"/>
-                                        <span className="font-semibold">Product name</span>
-                                    </div>
-                                </td>
-                                
-                                <td className="py-4">
-                                    <div className="flex items-center">
-                                        <button className="py-1 px-2 mr-2 focus:text-lime-400 text-4xl">-</button>
-                                        <span className="text-center w-3">1</span>
-                                        <button className="py-1 px-2 ml-2 focus:text-lime-400 text-4xl text-center">+</button>
-                                    </div>
-                                </td>
-                                <td className="py-4">
-                                <button
-        className="text-slate-800 hover:text-red-500 text-sm bg-white hover:bg-slate-100 border border-slate-200 rounded-lg font-medium px-2 py-2 inline-flex space-x-1 items-center">
-        <span>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5"
-                stroke="currentColor" className="w-4 h-4">
-                <path strokeLinecap="round" strokeLinejoin="round"
-                    d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
-            </svg>
-        </span>
-        <span className="hidden md:inline-block">Delete</span>
-    </button>
-                                </td>
-                            </tr>
-                            {/* <!-- More product rows --> */}
-                        </tbody>
-                    </table>
+        <div className="flex justify-center p-6 gap-4">
+          <div className="bg-gray-100 py-8 w-1/2">
+            <div className="container mx-auto px-4">
+              <h1 className="text-2xl font-semibold mb-4 text-center">Order Details</h1>
+              <div className="flex flex-col md:flex-row gap-4">
+                <div className="bg-white rounded-lg shadow-md p-4 w-full">
+                  <table className="w-full">
+                    <thead>
+                      <tr>
+                        <th className="text-left font-semibold">Product</th>
+                        <th className="text-left font-semibold">Quantity</th>
+                        <th className="text-left font-semibold">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {cupcakeslist.map((cupcake, index) => (
+                        <tr key={index}>
+                          <td className="py-4">
+                            <div className="flex items-center">
+                              <img className="h-16 w-16 mr-4" src={cupcakeslist[index]} alt="Product" />
+                              <span className="font-semibold">{cupcakeNameslist[index]}</span>
+                            </div>
+                          </td>
+                          <td className="py-4">
+                            <div className="flex items-center">
+                              <button 
+                                onClick={() => handleDecrement(index)}
+                                className="py-1 px-2 mr-2 focus:text-lime-400 text-4xl"
+                              >
+                                -
+                              </button>
+                              <span className="text-center w-3">{quantities[index]}</span>
+                              <button 
+                                onClick={() => handleIncrement(index)}
+                                className="py-1 px-2 ml-2 focus:text-lime-400 text-4xl text-center"
+                              >
+                                +
+                              </button>
+                            </div>
+                          </td>
+                          <td className="py-4">
+                            <button
+                              onClick={() => handleDelete(index)}
+                              className="text-slate-800 hover:text-red-500 text-sm bg-white hover:bg-slate-100 border border-slate-200 rounded-lg font-medium px-2 py-2 inline-flex space-x-1 items-center"
+                            >
+                              <span>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-4 h-4">
+                                  <path strokeLinecap="round" strokeLinejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+                                </svg>
+                              </span>
+                              <span className="hidden md:inline-block">Delete</span>
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
                 </div>
-            
-            
-        </div>
-    </div>
-</div>
+              </div>
+            </div>
+          </div>
+
+
     <div className="mx-auto w-1/2 max-w-[550px] bg-white">
         <form>
           
