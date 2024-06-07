@@ -219,8 +219,8 @@ const CakeshSection = () => {
         </section>
       </section>
       <section className="margin">
-        <div className="flex justify-center p-6 gap-4">
-          <div className="bg-gray-100 py-8 w-1/2">
+        <div className="flex justify-center p-6 gap-4 max-sm:block">
+          <div className="bg-gray-100 py-8 w-1/2 max-sm:w-full">
             <div className="container mx-auto px-4">
               <h1 className="text-2xl font-semibold mb-4 text-center">Order Details</h1>
               <div className="flex flex-col md:flex-row gap-4">
@@ -282,23 +282,23 @@ const CakeshSection = () => {
           </div>
 
 
-    <div className="mx-auto w-1/2 max-w-[550px] bg-white">
+    <div className="mx-auto w-1/2  bg-white max-sm:w-full">
         <form>
           
-          <div className="flex flex-row gap-2 max-md:flex-none max-md:block">
+          <div className="flex flex-row gap-2 max-md:flex-none max-md:block ">
           <div className="mb-2">
                 <label htmlFor="name" className="mb-3 block text-base font-medium text-[#62ca54]">
                     Your Name
                 </label>
                 <input type="text" name="name" id="name" placeholder="Full Name"
-                    className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                    className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#61ca4cdc] focus:shadow-md" />
             </div>
             <div className="mb-2">
                 <label htmlFor="phone" className="mb-3 block text-base font-medium text-[#62ca54]">
                     Phone Number
                 </label>
                 <input type="text" name="phone" id="phone" placeholder="Enter your phone number"
-                    className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                    className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#61ca4cdc] focus:shadow-md" />
             </div>
 
           </div>
@@ -308,63 +308,63 @@ const CakeshSection = () => {
                     Email Address
                 </label>
                 <input type="email" name="email" id="email" placeholder="Enter your email"
-                    className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                    className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#61ca4cdc] focus:shadow-md" />
             </div>
             <div className="mb-2">
-                <label htmlFor="name" className="mb-3 block text-base font-medium text-[#07074D]">
+                <label htmlFor="name" className="mb-3 block text-base font-medium text-[#62ca54]">
                     Your Address
                 </label>
                 <input type="text" name="name" id="name" placeholder="Enter Your Address"
-                    className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                    className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#61ca4cdc] focus:shadow-md" />
             </div>
            
 
             <div className="mb-5 pt-3">
-                <label className="mb-5 block text-base font-semibold text-[#07074D] sm:text-xl">
+                <label className="mb-5 block text-base font-semibold text-[#62ca54] sm:text-xl">
                     Consignee Details
                 </label>
                 <div className="flex flex-row gap-2 max-md:flex-none max-md:block">
           <div className="mb-2">
-                <label htmlFor="name" className="mb-3 block text-base font-medium text-[#07074D]">
+                <label htmlFor="name" className="mb-3 block text-base font-medium text-[#62ca54]">
                     Consignee Name
                 </label>
                 <input type="text" name="name" id="name" placeholder="Enter Consignee Name"
-                    className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                    className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#61ca4cdc] focus:shadow-md" />
             </div>
             <div className="mb-2">
-                <label htmlFor="phone" className="mb-3 block text-base font-medium text-[#07074D]">
+                <label htmlFor="phone" className="mb-3 block text-base font-medium text-[#62ca54]">
                     Consignee Number
                 </label>
                 <input type="text" name="phone" id="phone" placeholder="Enter Consignee Number"
-                    className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                    className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#61ca4cdc] focus:shadow-md" />
             </div>
 
           </div>
             <div className="mb-2">
-                <label htmlFor="email" className="mb-3 block text-base font-medium text-[#07074D]">
+                <label htmlFor="email" className="mb-3 block text-base font-medium text-[#62ca54]">
                     Consignee Email
                 </label>
                 <input type="email" name="email" id="email" placeholder="Enter Consignee email"
-                    className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                    className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#61ca4cdc] focus:shadow-md" />
             </div>
             <div className="mb-2">
-                <label htmlFor="name" className="mb-3 block text-base font-medium text-[#07074D]">
+                <label htmlFor="name" className="mb-3 block text-base font-medium text-[#62ca54]">
                     Consignee Address
                 </label>
                 <input type="text" name="name" id="name" placeholder="Enter Consignee Address"
-                    className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                    className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#61ca4cdc]focus:shadow-md" />
             </div>
             </div>
             <div className="mb-2">
-              <label htmlFor="message" className="mb-3 block text-base font-medium text-[#07074D]">
+              <label htmlFor="message" className="mb-3 block text-base font-medium text-[#62ca54]">
                   Message For Consignee
               </label>
-              <textarea  rows={2} name="message" id="message" placeholder="Enter message for consignee" className="w-full border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#687280] outline-none focus:border-[#6A64F1] focus:shadow-md resize-none  rounded-md"></textarea>
+              <textarea  rows={2} name="message" id="message" placeholder="Enter message for consignee" className="w-full border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#687280] outline-none focus:border-[#61ca4cdc]focus:shadow-md resize-none  rounded-md"></textarea>
             </div>
 
             <div>
                 <button
-                    className="hover:shadow-form w-full rounded-md bg-[#6A64F1] py-3 px-8 text-center text-base font-semibold text-white outline-none">
+                    className="hover:shadow-form w-full rounded-md bg-[#61ca4cdc] py-3 px-8 text-center text-base font-semibold text-white outline-none">
                     Place Order
                 </button>
             </div>

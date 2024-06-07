@@ -13,14 +13,11 @@ import StrawberryCupCake from "../../assets/cakesh/cupcakes/STRAWBERRY.png";
 import TruityFruity from "../../assets/cakesh/cupcakes/TRUITY-FRUITY.png";
 import VanillaCupCake from "../../assets/cakesh/cupcakes/VANILA-HEART.png";
 import PropTypes from "prop-types";
-
-import { Carousel } from "react-responsive-carousel";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 
 const CupCakeGrid = ({ setCupcakeNameslist, setCupcakeslist }) => {
   const [tooltipVisible, setTooltipVisible] = useState(Array(12).fill(false));
-
-  // Define cupcake data
   const cupcakeData = [
     { name: "Ice Cream", image: IceCreamCupcake },
     { name: "Baby Born", image: BabyBorn },
@@ -40,11 +37,9 @@ const CupCakeGrid = ({ setCupcakeNameslist, setCupcakeslist }) => {
     console.log("added");
     setCupcakeNameslist((prevList) => [...prevList, cupcake.name]);
     setCupcakeslist((prevList) => [...prevList, cupcake.image]);
-
     setTooltipVisible((prev) =>
       prev.map((item, i) => (i === index ? true : item))
     );
-
     setTimeout(() => {
       setTooltipVisible((prev) =>
         prev.map((item, i) => (i === index ? false : item))
@@ -52,27 +47,46 @@ const CupCakeGrid = ({ setCupcakeNameslist, setCupcakeslist }) => {
     }, 2000);
   };
 
+  const responsive = {
+    superLargeDesktop: {
+      breakpoint: { max: 4000, min: 1024 },
+      items: 4,
+    },
+    desktop: {
+      breakpoint: { max: 1024, min: 768 },
+      items: 3,
+    },
+    tablet: {
+      breakpoint: { max: 768, min: 654 },
+      items: 2,
+    },
+    mobile: {
+      breakpoint: { max: 654, min: 0 },
+      items: 1,
+    },
+  };
+
   return (
-    <div className="w-full  mx-auto ">
-      <Carousel showArrows={false} swipeable={true} showThumbs={false}>
+    <div className="w-full mx-auto h-[500px]">
+      <Carousel responsive={responsive} showDots={true} infinite={true} swipeable={true} className="h-[500px]">
         {cupcakeData.map((cupcake, index) => (
-          <div key={index} className=" h-[300px] ">
-            <div className="relative w-56 bg-white shadow-md rounded-xl h-72 ">
+          <div key={index} className="p-2">
+            <div className="relative w-60 shadow-md rounded-xl h-72 max-sm:mx-auto">
               <img
                 src={cupcake.image}
                 alt="Product"
-                className="h-56 w-56 object-cover rounded-t-xl"
+                className="h-56 w-full object-cover rounded-t-xl"
               />
-              <div className="px-4 py-3 w-56">
+              <div className="px-4 py-3 w-full">
                 <div className="flex justify-between items-center">
-                  <div className="relative">
-                    <p className="text-lg font-bold text-lime-500  block uppercase hover:text-lime-500 duration-500">
+                  <div className="relative w-full overflow-hidden text-ellipsis whitespace-nowrap pr-8">
+                    <p className="text-lg font-bold text-lime-500 block uppercase hover:text-lime-500 duration-500">
                       {cupcake.name}
                     </p>
                     <div className="absolute bottom-0 left-0 w-2/5 border-b-2 border-black"></div>
                   </div>
                   <button
-                    className="relative hover:text-lime-500 duration-500"
+                    className="relative hover:text-lime-500 duration-500 flex-shrink-0"
                     onClick={() => handleBtnClick(cupcake, index)}
                   >
                     <CiCircleCheck
@@ -82,7 +96,7 @@ const CupCakeGrid = ({ setCupcakeNameslist, setCupcakeslist }) => {
                       style={{ fontSize: "34px" }}
                     />
                     {tooltipVisible[index] && (
-                      <div className="absolute top-0 right-0 mb-5 font-medium bg-lime-500 text-black shadowm-md border-2 border-slate-500 text-xs px-3 py-1 rounded-lg transition-opacity duration-300">
+                      <div className="absolute top-0 right-0 mb-5 font-medium bg-lime-500 text-black shadow-md border-2 border-slate-500 text-xs px-3 py-1 rounded-lg transition-opacity duration-300">
                         Added successfully
                       </div>
                     )}
