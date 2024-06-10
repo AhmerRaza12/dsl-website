@@ -49,6 +49,9 @@
     .logo-translate {
         @apply animate-pulse text-lime-500;
     }
+    .order-details-bg{
+        @apply relative bg-order bg-cover bg-center;
+    }
       
 }
 
@@ -70,4 +73,8 @@
     to {
       transform: translateX(5px);
     }
+  }
+
+  .background-opacity-50 {
+    background-color: rgba(255, 255, 255, 0.5); /* Adjust the opacity value as needed */
   }
