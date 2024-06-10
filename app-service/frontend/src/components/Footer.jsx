@@ -12,19 +12,18 @@ const Footer = () => {
       <div className="mx-auto max-w-screen-xl">
         <div className="md:flex md:justify-between">
           <div className="grid grid-cols-4 gap-4 max-sm:gap-2 max-sm:grid-cols-1">
-            <div className="mb-6 md:mb-0 w-40">
-              <Link to="/" className="flex ">
-                <img src={Dsllogo} className=" h-40 w-40" alt="DSL Logo" />
-              </Link>
-              
-            </div>
-            <div>
+          <div className="flex items-center justify-center h-full w-full max-sm:mx-auto max-sm:flex max-sm:justify-center">
+  <Link to="/" className="flex flex-col items-center">
+    <img src={Dsllogo} className="h-40 w-40" alt="DSL Logo" />
+  </Link>
+</div>
+            <div className="max-sm:text-center max-sm:text-balance">
               <h2 className="mb-6 text-sm font-semibold text-white uppercase dark:text-white">
                 Addresses
               </h2>
               <ul className="text-gray-700 dark:text-gray-400">
                 <li className="mb-2">
-                  <span className="">
+                  <span className="text-slate-400 ">
                     {" "}
                     <HiOutlineLocationMarker className="inline-block w-4 h-4 mr-1 text-lime-500" />
                     Shop GF-41/22 Lavish Mall, near Teen Talwar, Block 8
@@ -32,14 +31,14 @@ const Footer = () => {
                   </span>
                 </li>
                 <li className="mb-2">
-                  <span className="">
+                  <span className="text-slate-400">
                     {" "}
                     <HiOutlineLocationMarker className="inline-block w-4 h-4 mr-1 text-lime-500" />
                     Shop G-66 New Jama Mall, M.A Jinnah Rd, Karachi, 75000
                   </span>
                 </li>
                 <li className="mb-2">
-                  <span className="">
+                  <span className="text-slate-400">
                     {" "}
                     <HiOutlineLocationMarker className="inline-block w-4 h-4 mr-1 text-lime-500" />
                     Shop GF-41/22 Lavish Mall, near Teen Talwar, Block 8
@@ -48,7 +47,7 @@ const Footer = () => {
                 </li>
               </ul>
             </div>
-            <div>
+            <div className="max-sm:text-center">
   <h2 className="mb-6 text-sm font-semibold text-white uppercase dark:text-white">
     CONTACT US
   </h2>
