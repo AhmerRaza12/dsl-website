@@ -22,13 +22,16 @@ app.register_blueprint(forms_bp)
 app.register_blueprint(admin_panel_bp)
 
 
+
 secret_key = os.urandom(16)
 app.config['SECRET_KEY'] = secret_key
+app.config['SQLALCHEMY_ECHO'] = True
 
+database_path = os.path.join(os.path.dirname(__file__), 'database.db')
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{database_path}'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
+# db = SQLAlchemy(app)
 
 
 db.init_app(app)

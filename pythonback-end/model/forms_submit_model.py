@@ -2,13 +2,19 @@ from flask import jsonify
 from datetime import datetime
 from db_connect import db
 from sqlalchemy.exc import SQLAlchemyError
-from sqlalchemy import text
+from sqlalchemy import text,Table, insert, MetaData
+import sqlalchemy as sa
+import sqlite3
+
 
 class FormsSubmitModel:
+    def __init__(self):
+        self.db_path = 'database.db'  
+
 
     def submit_quote(self, data):
         ins_query = text("""
-            INSERT INTO request_quote(type_quote, name, email, phone, from_place, to_place, shipment_type,
+            INSERT INTO req_quote(type_quote, name, email, phone, from_place, to_place, shipment_type,
                                       product_type, service_type, weight, pcs, length, width, height, request_time)
             VALUES (:type_quote, :name, :email, :phone, :from_place, :to_place, :shipment_type,
                     :product_type, :service_type, :weight, :pcs, :length, :width, :height, :request_time)
@@ -32,7 +38,7 @@ class FormsSubmitModel:
 
     def submit_pickup(self, data):
         ins_query = text("""
-            INSERT INTO request_pickup (name, phone, email, from_place, address, weight, pcs, length, width, height, request_time)
+            INSERT INTO req_pickup (name, phone, email, from_place, address, weight, pcs, length, width, height, request_time)
             VALUES (:name, :phone, :email, :from_place, :address, :weight, :pcs, :length, :width, :height, :request_time)
         """)
 
@@ -53,7 +59,7 @@ class FormsSubmitModel:
     def submit_account(self, data):
         items_dict = ["clothing", "books", "perfumes_cosmetics", "watches", "home_decor", "sports",
                       "home_appliances", "health_fitness", "mobiles_tablets", "computer_peripherals"]
-        product_range = ["clothing", "books", "computer", "perfumes"]
+        product_range = ["clothing", "books", "computer", "perfumes","sports"]
         result_dict = {item: item.split('_')[0] in product_range for item in items_dict}
         result_dict_filtered = {key: value for key, value in result_dict.items() if value}
 
@@ -71,16 +77,19 @@ class FormsSubmitModel:
             return jsonify("Form failed to submit."), 422
 
         try:
+            print("in 2nd try catch")
             fetch_prod_range = text("SELECT id_product_range FROM product_range ORDER BY id_product_range DESC LIMIT 1")
+            # print(fetch_prod_range,type(fetch_prod_range))
             result = db.session.execute(fetch_prod_range).fetchone()
-            prod_id = result['id_product_range'] if result else None
+            print(result)
+            prod_id = result[0] if result else None
             print("Fetch product range query executed successfully!")
         except SQLAlchemyError as e:
             print(f"Error fetching product range id: {e}")
             return jsonify("Form failed to submit."), 422
 
         ins_query = text("""
-            INSERT INTO request_an_account(company_name, full_name, ntn, sales_tax_num, landline, company_phone, mobile_num,
+            INSERT INTO req_acc(company_name, full_name, ntn, sales_tax_num, landline, company_phone, mobile_num,
                                            email, cnic, url_page, pickup_address, city, nature_of_business, number_months_in_business,
                                            ship_per_week, id_product_range, request_time)
             VALUES (:company_name, :full_name, :ntn, :sales_tax_num, :landline, :company_phone, :mobile_num,

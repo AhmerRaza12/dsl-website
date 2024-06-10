@@ -5,7 +5,7 @@ import os
 
 class UserModel:
     def __init__(self):
-        self.db_path = 'sqlite:///database.db'  
+        self.db_path = 'database.db'  
 
     def get_column_index(self, cursor, table_name, column_name):
         cursor.execute(f"PRAGMA table_info({table_name})")
@@ -46,20 +46,25 @@ class UserModel:
         query_user = "SELECT * FROM customer WHERE user_id=?"
         cursor.execute(query_user, (data['username'],))
         user_details = cursor.fetchone()
-        conn.close()
 
         if not user_details:
+            conn.close()
             return jsonify({"error": "user does not exist"}), 401
+
         else:
             pwd_index = self.get_column_index(cursor, 'customer', 'pwd')
             if not pwd_index:
+                conn.close()
                 return jsonify({"error": "Database error"}), 500
+
 
             if bcrypt.check_password_hash(user_details[pwd_index], data['pwd']):
                 session["user_id"] = data["username"]
                 fname_index = self.get_column_index(cursor, 'customer', 'fname')
+                conn.close()
                 return jsonify(user_details[fname_index].rstrip())
             else:
+                conn.close()
                 return jsonify({"error": "wrong password"}), 401
 
     def user_logout(self):

@@ -9,15 +9,15 @@ admin_panel_modl_Obj = AdminPanelModel()
 
 @admin_panel_bp.route("/admin/all_quotes")
 def fetch_quotes():
-    return admin_panel_modl_Obj.get_all_records("request_quote")
+    return admin_panel_modl_Obj.get_all_records("req_quote")
 
 @admin_panel_bp.route("/admin/all_pickups")
 def fetch_pickups():
-    return admin_panel_modl_Obj.get_all_records("request_pickup")
+    return admin_panel_modl_Obj.get_all_records("req_pickup")
 
 @admin_panel_bp.route("/admin/all_accounts")
 def fetch_account_requests():
-    return admin_panel_modl_Obj.get_all_records("request_an_account")
+    return admin_panel_modl_Obj.get_all_records("req_acc")
 
 
 
