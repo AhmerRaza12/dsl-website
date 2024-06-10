@@ -11,7 +11,7 @@ const MapSection = () => {
         loading="lazy"
         referrerPolicy="no-referrer-when-downgrade"
       ></iframe>
-      <hr className="h-1 mt-4 bg-green-300 border-0 dark:bg-gray-700 w-3/4 mx-auto"/>
+      <hr className="h-1 mt-4 mb-4 bg-green-300 border-0 dark:bg-gray-700 w-3/4 mx-auto"/>
     </div>
   );
 };
