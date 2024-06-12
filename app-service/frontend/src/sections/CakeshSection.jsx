@@ -7,6 +7,8 @@ import CupcakesImg from "../assets/cakesh/ZOO.png";
 import CupCakeGrid from "../utilities/Cakesh/CupCakeGrid";
 import CustomizeCakeGrid from "../utilities/Cakesh/CustomizeCakeGrid";
 import FarmaishCakeGrid from "../utilities/Cakesh/FarmaishCakeGrid";
+import PastryGrid from "../utilities/Cakesh/PastryGrid";
+import SimpleCakeGrid from "../utilities/Cakesh/SimpleCakeGrid";
 const CakeshSection = () => {
   const [activeTab, setActiveTab] = useState(1);
   const [cupcakeslist, setCupcakeslist] = useState([]);
@@ -18,6 +20,12 @@ const CakeshSection = () => {
   const [farmaishcakeNameslist, setFarmaishcakeNameslist] = useState([]);
   const [farmaishcakeslist, setFarmaishcakeslist] = useState([]);
   const [farmaishcakeQuantities, setFarmaishcakeQuantities] = useState([]);
+  const [pastryNameslist, setPastryNameslist] = useState([]);
+  const [pastrylist, setPastrylist] = useState([]);
+  const [pastryQuantities, setPastryQuantities] = useState([]);
+  const [simplecakeNameslist, setSimplecakeNameslist] = useState([]);
+  const [simplecakeslist, setSimplecakeslist] = useState([]);
+  const [simplecakeQuantities, setSimplecakeQuantities] = useState([]);
 
   useEffect(() => {
     setCupcakeQuantities(Array(cupcakeslist.length).fill(1));
@@ -30,6 +38,14 @@ const CakeshSection = () => {
   useEffect(() => {
     setFarmaishcakeQuantities(Array(farmaishcakeslist.length).fill(1));
   }, [farmaishcakeslist.length]);
+
+  useEffect(() => {
+    setPastryQuantities(Array(pastrylist.length).fill(1));
+  }, [pastrylist.length]);
+
+  useEffect(() => {
+    setSimplecakeQuantities(Array(simplecakeslist.length).fill(1));
+  }, [simplecakeslist.length]);
 
   const handleTabClick = (index) => {
     if (activeTab !== index) {
@@ -48,13 +64,24 @@ const CakeshSection = () => {
       setCustomizedcakeQuantities((prevQuantities) =>
         prevQuantities.map((qty, i) => (i === newIndex ? qty + 1 : qty))
       );
-    } else {
+    } else if (index < cupcakeslist.length + customizedcakeslist.length + farmaishcakeslist.length) {
       const newIndex = index - cupcakeslist.length - customizedcakeslist.length;
       setFarmaishcakeQuantities((prevQuantities) =>
         prevQuantities.map((qty, i) => (i === newIndex ? qty + 1 : qty))
       );
+    } else if (index < cupcakeslist.length + customizedcakeslist.length + farmaishcakeslist.length + pastrylist.length) {
+      const newIndex = index - cupcakeslist.length - customizedcakeslist.length - farmaishcakeslist.length;
+      setPastryQuantities((prevQuantities) =>
+        prevQuantities.map((qty, i) => (i === newIndex ? qty + 1 : qty))
+      );
+    } else {
+      const newIndex = index - cupcakeslist.length - customizedcakeslist.length - farmaishcakeslist.length - pastrylist.length;
+      setSimplecakeQuantities((prevQuantities) =>
+        prevQuantities.map((qty, i) => (i === newIndex ? qty + 1 : qty))
+      );
     }
   };
+
   const handleDecrement = (event, index) => {
     event.preventDefault();
     if (index < cupcakeslist.length) {
@@ -66,9 +93,19 @@ const CakeshSection = () => {
       setCustomizedcakeQuantities((prevQuantities) =>
         prevQuantities.map((qty, i) => (i === newIndex && qty > 1 ? qty - 1 : qty))
       );
-    } else {
+    } else if (index < cupcakeslist.length + customizedcakeslist.length + farmaishcakeslist.length) {
       const newIndex = index - cupcakeslist.length - customizedcakeslist.length;
       setFarmaishcakeQuantities((prevQuantities) =>
+        prevQuantities.map((qty, i) => (i === newIndex && qty > 1 ? qty - 1 : qty))
+      );
+    } else if (index < cupcakeslist.length + customizedcakeslist.length + farmaishcakeslist.length + pastrylist.length) {
+      const newIndex = index - cupcakeslist.length - customizedcakeslist.length - farmaishcakeslist.length;
+      setPastryQuantities((prevQuantities) =>
+        prevQuantities.map((qty, i) => (i === newIndex && qty > 1 ? qty - 1 : qty))
+      );
+    } else {
+      const newIndex = index - cupcakeslist.length - customizedcakeslist.length - farmaishcakeslist.length - pastrylist.length;
+      setSimplecakeQuantities((prevQuantities) =>
         prevQuantities.map((qty, i) => (i === newIndex && qty > 1 ? qty - 1 : qty))
       );
     }
@@ -84,26 +121,70 @@ const CakeshSection = () => {
       setCustomizedcakeslist(customizedcakeslist.filter((_, i) => i !== newIndex));
       setCustomizedcakeNameslist(customizedcakeNameslist.filter((_, i) => i !== newIndex));
       setCustomizedcakeQuantities(customizedcakeQuantities.filter((_, i) => i !== newIndex));
-    } else {
+    } else if (index < cupcakeslist.length + customizedcakeslist.length + farmaishcakeslist.length) {
       const newIndex = index - cupcakeslist.length - customizedcakeslist.length;
       setFarmaishcakeslist(farmaishcakeslist.filter((_, i) => i !== newIndex));
       setFarmaishcakeNameslist(farmaishcakeNameslist.filter((_, i) => i !== newIndex));
       setFarmaishcakeQuantities(farmaishcakeQuantities.filter((_, i) => i !== newIndex));
+    } else if (index < cupcakeslist.length + customizedcakeslist.length + farmaishcakeslist.length + pastrylist.length) {
+      const newIndex = index - cupcakeslist.length - customizedcakeslist.length - farmaishcakeslist.length;
+      setPastrylist(pastrylist.filter((_, i) => i !== newIndex));
+      setPastryNameslist(pastryNameslist.filter((_, i) => i !== newIndex));
+      setPastryQuantities(pastryQuantities.filter((_, i) => i !== newIndex));
+    } else {
+      const newIndex = index - cupcakeslist.length - customizedcakeslist.length - farmaishcakeslist.length - pastrylist.length;
+      setSimplecakeslist(simplecakeslist.filter((_, i) => i !== newIndex));
+      setSimplecakeNameslist(simplecakeNameslist.filter((_, i) => i !== newIndex));
+      setSimplecakeQuantities(simplecakeQuantities.filter((_, i) => i !== newIndex));
     }
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // handle form submission logic here
+  
+    // Gather form data
+    const formData = new FormData(event.target);
+  
+    // Extract form fields
+    const customerData = {
+      name: formData.get('name'),
+      phone: formData.get('phone'),
+      email: formData.get('email'),
+      address: formData.get('address'),
+      consignee: {
+        name: formData.get('consignee_name'),
+        phone: formData.get('consignee_phone'),
+        email: formData.get('consignee_email'),
+        address: formData.get('consignee_address'),
+      },
+      message: formData.get('message'),
+    };
+  
+   
+    const allCakesList = [...cupcakeslist, ...customizedcakeslist, ...farmaishcakeslist, ...pastrylist, ...simplecakeslist];
+    const allCakesNamesList = [...cupcakeNameslist, ...customizedcakeNameslist, ...farmaishcakeNameslist, ...pastryNameslist, ...simplecakeNameslist];
+    const allQuantities = [...cupcakeQuantities, ...customizedcakeQuantities, ...farmaishcakeQuantities, ...pastryQuantities, ...simplecakeQuantities];
+  
+    const orderDetails = allCakesList.map((item, index) => ({
+      item,
+      name: allCakesNamesList[index],
+      quantity: allQuantities[index],
+    }));
+  
+   
+    console.log('Customer Data:', customerData);
+    console.log('Order Details:', orderDetails);
+  
+
   };
 
   const renderOrderDetails = () => {
-    const allCakesList = [...cupcakeslist, ...customizedcakeslist, ...farmaishcakeslist];
-    const allCakesNamesList = [...cupcakeNameslist, ...customizedcakeNameslist, ...farmaishcakeNameslist];
-    const allQuantities = [...cupcakeQuantities, ...customizedcakeQuantities, ...farmaishcakeQuantities];
+    const allCakesList = [...cupcakeslist, ...customizedcakeslist, ...farmaishcakeslist, ...pastrylist, ...simplecakeslist];
+    const allCakesNamesList = [...cupcakeNameslist, ...customizedcakeNameslist, ...farmaishcakeNameslist , ...pastryNameslist, ...simplecakeNameslist];
+    const allQuantities = [...cupcakeQuantities, ...customizedcakeQuantities, ...farmaishcakeQuantities, ...pastryQuantities, ...simplecakeQuantities];
   
     return (
-      <div className="py-8 w-1/2 max-sm:w-full relative bg-gray-200">
+      <div className="py-8 w-full sm:w-1/2 relative bg-gray-200">
         <div className="container mx-auto px-4">
           <h1 className="text-2xl font-semibold mb-4 text-center">Order Details</h1>
           <div className="flex flex-col md:flex-row gap-4">
@@ -119,9 +200,9 @@ const CakeshSection = () => {
                 <tbody>
                   {allCakesList.map((item, index) => (
                     <tr key={index}>
-                      <td className="py-4">
+                      <td className="py-4 ">
                         <div className="flex items-center">
-                          <img className="h-16 w-16 mr-4" src={item} alt="Product" />
+                          <img className="h-16 w-16 mr-4 " src={item} alt="Product" />
                           <span className="font-semibold">{allCakesNamesList[index]}</span>
                         </div>
                       </td>
@@ -348,105 +429,155 @@ const CakeshSection = () => {
               setFarmaishcakeNameslist={setFarmaishcakeNameslist}
             />
           )}
+          {activeTab === 4 && (
+            <PastryGrid
+              setPastrylist={setPastrylist}
+              setPastryNameslist={setPastryNameslist}
+            />
+          )}
+          {activeTab === 5 && (
+            <SimpleCakeGrid
+              setSimplecakeslist={setSimplecakeslist}
+              setSimplecakeNameslist={setSimplecakeNameslist}
+            />
+          )}
         </section>
       </section>
       <section className="margin">
       <form onSubmit={handleSubmit}>
-        <div className="flex justify-center p-6 gap-4 max-sm:block">
-        
-          
-        {renderOrderDetails()}
+  <div className="flex justify-center p-6 gap-4 max-sm:block">
+    {renderOrderDetails()}
+    <div className="mx-auto w-1/2 bg-white max-sm:w-full">
+      <div className="flex flex-row gap-2 max-md:flex-none max-md:block">
+        <div className="mb-2">
+          <label htmlFor="name" className="mb-3 block text-base font-medium text-[#62ca54]">
+            Your Name
+          </label>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            placeholder="Full Name"
+            className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#61ca4cdc] focus:shadow-md"
+          />
+        </div>
+        <div className="mb-2">
+          <label htmlFor="phone" className="mb-3 block text-base font-medium text-[#62ca54]">
+            Phone Number
+          </label>
+          <input
+            type="text"
+            name="phone"
+            id="phone"
+            placeholder="Enter your phone number"
+            className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#61ca4cdc] focus:shadow-md"
+          />
+        </div>
+      </div>
 
-    <div className="mx-auto w-1/2  bg-white max-sm:w-full">
-        
-          
-          <div className="flex flex-row gap-2 max-md:flex-none max-md:block ">
+      <div className="mb-2">
+        <label htmlFor="email" className="mb-3 block text-base font-medium text-[#62ca54]">
+          Email Address
+        </label>
+        <input
+          type="email"
+          name="email"
+          id="email"
+          placeholder="Enter your email"
+          className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#61ca4cdc] focus:shadow-md"
+        />
+      </div>
+      <div className="mb-2">
+        <label htmlFor="address" className="mb-3 block text-base font-medium text-[#62ca54]">
+          Your Address
+        </label>
+        <input
+          type="text"
+          name="address"
+          id="address"
+          placeholder="Enter Your Address"
+          className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#61ca4cdc] focus:shadow-md"
+        />
+      </div>
+
+      <div className="mb-5 pt-3">
+        <label className="mb-5 block text-base font-semibold text-[#62ca54] sm:text-xl">Consignee Details</label>
+        <div className="flex flex-row gap-2 max-md:flex-none max-md:block">
           <div className="mb-2">
-                <label htmlFor="name" className="mb-3 block text-base font-medium text-[#62ca54]">
-                    Your Name
-                </label>
-                <input type="text" name="name" id="name" placeholder="Full Name"
-                    className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#61ca4cdc] focus:shadow-md" />
-            </div>
-            <div className="mb-2">
-                <label htmlFor="phone" className="mb-3 block text-base font-medium text-[#62ca54]">
-                    Phone Number
-                </label>
-                <input type="text" name="phone" id="phone" placeholder="Enter your phone number"
-                    className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#61ca4cdc] focus:shadow-md" />
-            </div>
-
+            <label htmlFor="consignee_name" className="mb-3 block text-base font-medium text-[#62ca54]">
+              Consignee Name
+            </label>
+            <input
+              type="text"
+              name="consignee_name"
+              id="consignee_name"
+              placeholder="Enter Consignee Name"
+              className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#61ca4cdc] focus:shadow-md"
+            />
           </div>
-            
-            <div className="mb-2">
-                <label htmlFor="email" className="mb-3 block text-base font-medium text-[#62ca54]">
-                    Email Address
-                </label>
-                <input type="email" name="email" id="email" placeholder="Enter your email"
-                    className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#61ca4cdc] focus:shadow-md" />
-            </div>
-            <div className="mb-2">
-                <label htmlFor="name" className="mb-3 block text-base font-medium text-[#62ca54]">
-                    Your Address
-                </label>
-                <input type="text" name="name" id="name" placeholder="Enter Your Address"
-                    className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#61ca4cdc] focus:shadow-md" />
-            </div>
-           
-
-            <div className="mb-5 pt-3">
-                <label className="mb-5 block text-base font-semibold text-[#62ca54] sm:text-xl">
-                    Consignee Details
-                </label>
-                <div className="flex flex-row gap-2 max-md:flex-none max-md:block">
           <div className="mb-2">
-                <label htmlFor="name" className="mb-3 block text-base font-medium text-[#62ca54]">
-                    Consignee Name
-                </label>
-                <input type="text" name="name" id="name" placeholder="Enter Consignee Name"
-                    className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#61ca4cdc] focus:shadow-md" />
-            </div>
-            <div className="mb-2">
-                <label htmlFor="phone" className="mb-3 block text-base font-medium text-[#62ca54]">
-                    Consignee Number
-                </label>
-                <input type="text" name="phone" id="phone" placeholder="Enter Consignee Number"
-                    className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#61ca4cdc] focus:shadow-md" />
-            </div>
-
+            <label htmlFor="consignee_phone" className="mb-3 block text-base font-medium text-[#62ca54]">
+              Consignee Number
+            </label>
+            <input
+              type="text"
+              name="consignee_phone"
+              id="consignee_phone"
+              placeholder="Enter Consignee Number"
+              className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#61ca4cdc] focus:shadow-md"
+            />
           </div>
-            <div className="mb-2">
-                <label htmlFor="email" className="mb-3 block text-base font-medium text-[#62ca54]">
-                    Consignee Email
-                </label>
-                <input type="email" name="email" id="email" placeholder="Enter Consignee email"
-                    className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#61ca4cdc] focus:shadow-md" />
-            </div>
-            <div className="mb-2">
-                <label htmlFor="name" className="mb-3 block text-base font-medium text-[#62ca54]">
-                    Consignee Address
-                </label>
-                <input type="text" name="name" id="name" placeholder="Enter Consignee Address"
-                    className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#61ca4cdc]focus:shadow-md" />
-            </div>
-            </div>
-            <div className="mb-2">
-              <label htmlFor="message" className="mb-3 block text-base font-medium text-[#62ca54]">
-                  Message For Consignee
-              </label>
-              <textarea  rows={2} name="message" id="message" placeholder="Enter message for consignee" className="w-full border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#687280] outline-none focus:border-[#61ca4cdc]focus:shadow-md resize-none  rounded-md"></textarea>
-            </div>
+        </div>
 
-            <div>
-                <button type="submit"
-                    className="hover:shadow-form w-full rounded-md bg-[#61ca4cdc] py-3 px-8 text-center text-base font-semibold text-white outline-none">
-                    Place Order
-                </button>
-            </div>
-        
+        <div className="mb-2">
+          <label htmlFor="consignee_email" className="mb-3 block text-base font-medium text-[#62ca54]">
+            Consignee Email
+          </label>
+          <input
+            type="email"
+            name="consignee_email"
+            id="consignee_email"
+            placeholder="Enter Consignee email"
+            className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#61ca4cdc] focus:shadow-md"
+          />
+        </div>
+        <div className="mb-2">
+          <label htmlFor="consignee_address" className="mb-3 block text-base font-medium text-[#62ca54]">
+            Consignee Address
+          </label>
+          <input
+            type="text"
+            name="consignee_address"
+            id="consignee_address"
+            placeholder="Enter Consignee Address"
+            className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#61ca4cdc] focus:shadow-md"
+          />
+        </div>
+      </div>
+      <div className="mb-2">
+        <label htmlFor="message" className="mb-3 block text-base font-medium text-[#62ca54]">
+          Message For Consignee
+        </label>
+        <textarea
+          rows={2}
+          name="message"
+          id="message"
+          placeholder="Enter message for consignee"
+          className="w-full border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#687280] outline-none focus:border-[#61ca4cdc] focus:shadow-md resize-none rounded-md"
+        ></textarea>
+      </div>
+
+      <div>
+        <button
+          type="submit"
+          className="hover:shadow-form w-full rounded-md bg-[#61ca4cdc] py-3 px-8 text-center text-base font-semibold text-white outline-none"
+        >
+          Place Order
+        </button>
+      </div>
     </div>
-</div>
-</form>
+  </div>
+</form>;
         </section>
     </>
   );
