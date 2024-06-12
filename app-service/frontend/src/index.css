@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components{
+    .about-us-banner{
+     @apply relative h-[250px] w-full bg-about-us bg-cover bg-center p-3 flex items-center max-sm:justify-center;
+    }
+    .services-banner{
+     @apply relative h-[250px] w-full bg-services bg-cover bg-center p-3 flex items-center max-sm:justify-center;
+    }
+    .about-us-text{
+        @apply text-slate-50 p-5 px-10 font-sans font-bold text-4xl leading-normal relative z-10;
+    }
+    .margin{
+        @apply my-10 mx-20 max-md:my-2 max-md:mx-10;
+    }
+    .margin-top{
+        @apply mt-10 max-md:mt-20;
+    }
+    .margin-left-right{
+        @apply mx-20 max-md:mx-10;
+    }
+    .about-sections-heading{
+        @apply text-balance font-sans text-3xl font-bold leading-10 text-black max-md:text-xl max-md:text-center;
+    }
+    .about-sections{
+        @apply relative mt-5 grid grid-cols-2 gap-1 max-md:grid-cols-1;
+    }
+    .about-sections-img{
+        @apply relative  max-md:w-full  max-sm:mx-auto max-sm:w-2/3;
+    }
+    .about-sections-second-div{
+         @apply about-sections-img h-[350px] p-3 w-full max-md:col-span-4 max-md:p-1;
+    }
+    .about-sections-second-div-img{
+        @apply h-[400px] max-md:w-full max-md:object-contain  overflow-hidden rounded-md object-contain max-md:h-[250px];
+    }
+    .counter-section-p{
+        @apply text-black text-center text-2xl  font-medium font-sans uppercase tracking-wide text-balance;
+    }
+    .active-tab{
+        @apply bg-lime-400 text-black rounded-lg;
+    }
+    .inactive-tab{
+        @apply duration-200 hover:font-bold hover:bg-transparent hover:text-black  hover:ring-2 hover:ring-lime-400  hover:border-lime-500;
+    }
+   
+    .logo-translate {
+        @apply animate-pulse text-lime-500;
+    }
+    .order-details-bg{
+        @apply relative bg-order bg-cover bg-center;
+    }
+      
+}
+
+.checkbox{
+    color: black;
+}
+.checkbox:hover{
+    color:lime;
+    transition: 0.5s;
+}
+.logo-translate {
+    animation: logoTranslate 0.5s ease-in-out alternate infinite;
+   
+  }
+  @keyframes logoTranslate {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(5px);
+    }
+  }
+
+  .background-opacity-50 {
+    background-color: rgba(255, 255, 255, 0.5); /* Adjust the opacity value as needed */
+  }

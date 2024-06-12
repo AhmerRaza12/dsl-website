@@ -3,3 +3,8 @@ pythonback-end/tmp
 pythonback-end/appmap*
 pythonback-end/myenv
 __pycache__
+frontend/node_modules/
+app-service/frontend/node_modules/
+.vscode/
+.env
+app-service/frontend/src/assets

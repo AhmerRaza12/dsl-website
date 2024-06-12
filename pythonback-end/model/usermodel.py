@@ -84,7 +84,7 @@ class UserModel:
         query_user = "SELECT * FROM customer WHERE user_id=?"
         cursor.execute(query_user, (user_id,))
         user_details = cursor.fetchone()
-        conn.close()
+
 
         fname_index = self.get_column_index(cursor, 'customer', 'fname')
         lname_index = self.get_column_index(cursor, 'customer', 'lname')
@@ -94,10 +94,10 @@ class UserModel:
 
         fname = user_details[fname_index].strip() if fname_index is not None and user_details[fname_index] else None
         lname = user_details[lname_index].strip() if lname_index is not None and user_details[lname_index] else None
-        contact = user_details[contact_index].strip() if contact_index is not None and user_details[contact_index] else None
+        contact = user_details[contact_index] if contact_index is not None and user_details[contact_index] else None
         shpp_addr = user_details[shpp_addr_index].strip() if shpp_addr_index is not None and user_details[shpp_addr_index] else None
         paymode = user_details[paymode_index].strip() if paymode_index is not None and user_details[paymode_index] else None
-
+        conn.close()
         return jsonify({
             "fname": fname,
             "lname": lname,
