@@ -11,6 +11,7 @@ import Services from './pages/Services';
 import Cakesh from './pages/Cakesh';
 import Feelings from './pages/Feelings';
 import Portal from './pages/admin/Portal';
+import Contact from './pages/Contact';
 
 const ScrollToTopButton = () => {
   const [showButton, setShowButton] = React.useState(false);
@@ -30,7 +31,7 @@ const ScrollToTopButton = () => {
 
   return (
     <button
-      className={`fixed bottom-4 right-4 bg-green-500 text-white p-3 rounded-md transition-opacity ${
+      className={`fixed bottom-4 right-4 bg-lime-500 text-white p-3 rounded-md transition-opacity ${
         showButton ? 'opacity-100' : 'opacity-0'
       }`}
       onClick={scrollToTop}
@@ -63,6 +64,7 @@ export default function App() {
         <Route path='/cakesh' element={<><Cakesh /><ScrollToTopButton /></>} />
         <Route path='/feelings' element={<><Feelings /><ScrollToTopButton /></>} />
         <Route path='/signup' element={<><SignUp /><ScrollToTopButton /></>} />
+        <Route path ='/contact' element={<><Contact/><ScrollToTopButton /></>} />
         <Route path='/admin/table' element={<><Portal /> <ScrollToTopButton/></>}       />
       </Routes>
     </Router>

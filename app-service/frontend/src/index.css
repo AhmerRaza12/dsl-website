@@ -52,6 +52,9 @@
     .order-details-bg{
         @apply relative bg-order bg-cover bg-center;
     }
+    .contact-us-banner{
+        @apply relative h-[250px] w-full bg-contact-us bg-cover  p-3 flex items-center max-sm:justify-center;
+    }
       
 }
 
