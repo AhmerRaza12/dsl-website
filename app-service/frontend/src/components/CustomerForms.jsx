@@ -10,12 +10,12 @@ const FormButton = ({ label, form, modalId }) => {
 
   const openModal = () => {
     setIsModalOpen(true);
-    document.body.classList.add('overflow-y-hidden');
+    document.body.style.overflow = 'hidden';
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
-    document.body.classList.remove('overflow-y-hidden');
+    document.body.style.overflow = 'auto';
   };
 
   return (
@@ -34,10 +34,10 @@ const FormButton = ({ label, form, modalId }) => {
           id={modalId}
           tabIndex="-1"
           aria-hidden="true"
-          className="fixed inset-0 z-50 flex justify-center items-center w-full h-full bg-gray-900 bg-opacity-60"
+          className="fixed inset-0 z-50 flex justify-center items-center w-full h-full bg-gray-900 bg-opacity-60 overflow-y-auto"
         >
-          <div className="relative p-4 w-full max-w-2xl max-h-full bg-white rounded-lg shadow dark:bg-gray-700">
-            <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+          <div className="relative p-4 w-full max-w-2xl bg-white rounded-lg shadow dark:bg-gray-700">
+            <div className="flex items-center justify-between p-4 border-b rounded-t dark:border-gray-600">
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
                 {label}
               </h3>
@@ -50,7 +50,7 @@ const FormButton = ({ label, form, modalId }) => {
                 <span className="sr-only">Close modal</span>
               </button>
             </div>
-            <div className="p-4 md:p-5 space-y-4">
+            <div className="p-4 space-y-4 max-h-[80vh] overflow-y-auto">
               {form}
             </div>
           </div>
