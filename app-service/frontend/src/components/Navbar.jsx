@@ -1,20 +1,47 @@
 import "../styles.css";
 import PropTypes from 'prop-types'; 
-import React, { useState } from "react";
+import React, { useState, useEffect,useRef} from "react";
 import { Link, useLocation } from "react-router-dom";
 import Dsllogo from '../assets/Dsl logo 150x150-new.png';
 
-const Navbar = ({ loggedInName }) => {
+const Navbar = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const location = useLocation();
+  let loggedInName= sessionStorage.getItem('username');
+  const dropdownRef = useRef(null);
 
   const toggleDrawer = () => {
     setIsDrawerOpen(!isDrawerOpen);
   };
 
+
   const closeDrawer = () => {
     setIsDrawerOpen(false);
   };
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  const closeDropdown = () => {
+    setIsDropdownOpen(false);
+  };
+
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        closeDropdown();
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const isAdminRoute = location.pathname.startsWith('/admin');
 
@@ -47,8 +74,33 @@ const Navbar = ({ loggedInName }) => {
       </div>
 
       <div className="flex items-center space-x-4">
-        {loggedInName ? (
-          <p className="hidden md:block text-black">Welcome, <span className="text-green-500">{loggedInName}</span></p>
+      {loggedInName ? (
+          <div className="relative" ref={dropdownRef}>
+            <button onClick={toggleDropdown} className="hidden md:block text-black">
+              Welcome, <span className="text-green-500 cursor-pointer">{loggedInName}</span>
+            </button>
+            {isDropdownOpen && (
+              <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-300 rounded-md shadow-lg z-50">
+                <ul className="py-1">
+                  <li>
+                    <Link to="/profile" className="block px-4 py-2 text-black hover:bg-gray-200" onClick={closeDropdown}>Profile</Link>
+                  </li>
+                  <Link
+                      to="/"
+                      className="block px-4 py-2 text-black hover:bg-gray-200"
+                      onClick={() => {
+                        sessionStorage.removeItem('username');
+                        loggedInName= null;
+                        closeDropdown();
+                        window.location.reload();
+                      }}
+                    >
+                      Logout
+                    </Link>
+                </ul>
+              </div>
+            )}
+          </div>
         ) : (
           <Link to="/login" className="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 transition duration-300 ease-in-out">Login</Link>
         )}

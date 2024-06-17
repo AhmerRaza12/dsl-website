@@ -12,6 +12,8 @@ import Cakesh from './pages/Cakesh';
 import Feelings from './pages/Feelings';
 import Portal from './pages/admin/Portal';
 import Contact from './pages/Contact';
+import Footer from './components/Footer';
+import BookingList from './pages/admin/BookingList';
 
 const ScrollToTopButton = () => {
   const [showButton, setShowButton] = React.useState(false);
@@ -50,9 +52,10 @@ export default function App() {
 
   return (
     <Router>
-      <Navbar loggedInName={loggedInName} />
+      
       <Routes>
         <Route path="/" element={<>
+          <Navbar loggedInName={loggedInName} />
           <Homepage />
           <ScrollToTopButton />
         </>} />
@@ -64,11 +67,12 @@ export default function App() {
         <Route path='/signup' element={<><SignUp /><ScrollToTopButton /></>} />
         <Route path='/contact' element={<><Contact/><ScrollToTopButton /></>} />
         {/* For Any admin routes login is required */}
-        <Route path='/admin/retail-booking' element={<><Portal /> <ScrollToTopButton/></>} />
-        <Route path='/admin/booking-list' element={<><Portal /> <ScrollToTopButton/></>} />
-        <Route path='/admin/track-entry' element={<><Portal /> <ScrollToTopButton/></>} />
-        <Route path='/admin/delivery-detail' element={<><Portal /> <ScrollToTopButton/></>} />
+        <Route path='/admin/retail-booking' element={<> <Navbar/> <Portal /> <ScrollToTopButton/></>} />
+        <Route path='/admin/booking-list' element={<><Navbar/><BookingList/> <ScrollToTopButton/></>} />
+        <Route path='/admin/track-entry' element={<><Navbar/><Portal /> <ScrollToTopButton/></>} />
+        <Route path='/admin/delivery-detail' element={<><Navbar/><Portal /> <ScrollToTopButton/></>} />
       </Routes>
+      <Footer />
     </Router>
   );
 }

@@ -1,32 +1,57 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types'; 
-import { Link } from 'react-router-dom'; 
-import {useNavigate} from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { Link, useNavigate } from 'react-router-dom';
 
 const LoginForm = ({ onLogin }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const formData = new FormData();
-    formData.append('username', username);
-    formData.append('password', password);
     
-    fetch('http://127.0.0.1:5000/user/login', {
+    if (username.startsWith('web')) {
+      formData.append('ID', username); // Use 'ID' for admin username
+      formData.append('PWD', password); // Use 'PWD' for admin password
+    } else {
+      formData.append('username', username); // Use 'username' for user username
+      formData.append('pwd', password); // Use 'pwd' for user password
+    }
+
+    const loginEndpoint = username.startsWith('web')
+      ? 'http://127.0.0.1:5000/admin/login'
+      : 'http://127.0.0.1:5000/user/login';
+
+    fetch(loginEndpoint, {
       method: 'POST',
       body: formData,
     })
-    .then((response) => response.json())
-    .then((data) => {
-      onLogin(data); 
-      useNavigate('/');
-      
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-    });
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        if (data.error) {
+          throw new Error(data.error);
+        }
+        if (username.startsWith('web')) {
+          sessionStorage.setItem('username', data);
+          onLogin(data);
+          navigate('/admin/booking-list');
+        } else {
+          sessionStorage.setItem('username', data.username);
+          onLogin(data);
+          navigate('/'); 
+        }
+      })
+      .catch((error) => {
+        console.error('Error during fetch:', error);
+        alert('Login failed: ' + error.message);
+      });
   };
 
   return (
@@ -65,7 +90,6 @@ const LoginForm = ({ onLogin }) => {
     </div>
   );
 };
-
 
 LoginForm.propTypes = {
   onLogin: PropTypes.func.isRequired,
