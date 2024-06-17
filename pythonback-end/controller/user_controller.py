@@ -22,3 +22,14 @@ def user_details_controller():
 def logout_controller():
     return usr_modl_Obj.user_logout()
 
+
+@userbp.route("/admin/signup", methods=["POST"])
+def admin_signup_controller():
+    return usr_modl_Obj.admin_signup(request.form)
+
+@userbp.route("/admin/login", methods=["POST"])
+def admin_login_controller():
+    return usr_modl_Obj.admin_login(request.form)
+
+
+

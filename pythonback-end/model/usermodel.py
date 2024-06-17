@@ -105,3 +105,54 @@ class UserModel:
             "ship_addr": shpp_addr,
             "paymode": paymode
         })
+    
+    def admin_signup(self, data):
+        try:
+            conn = sqlite3.connect(self.db_path)
+            cursor = conn.cursor()
+            
+            query_admin = "SELECT * FROM admin WHERE ID=?"
+            cursor.execute(query_admin, (data['ID'],))
+            admin_details = cursor.fetchone()
+
+            if admin_details:
+                conn.close()
+                return jsonify({"error": "ID already being used."}), 401
+
+            ins_str = "INSERT INTO admin(ID, PWD, branch_name, branch_no) VALUES (?, ?, ?, ?)"
+            cursor.execute(ins_str, (data['ID'], data['PWD'], data['branch_name'], data['branch_no']))
+
+            conn.commit()
+            conn.close()
+            session["admin_id"] = data["ID"]
+            return jsonify("success"), 200
+        except Exception as e:
+            return jsonify({"error": str(e)}), 500
+
+    def admin_login(self, data):
+        try:
+            conn = sqlite3.connect(self.db_path)
+            cursor = conn.cursor()
+
+            query_admin = "SELECT * FROM admin WHERE ID=?"
+            cursor.execute(query_admin, (data['ID'],))
+            admin_details = cursor.fetchone()
+
+            if not admin_details:
+                conn.close()
+                return jsonify({"error": "admin does not exist"}), 401
+
+            pwd_index = self.get_column_index(cursor, 'admin', 'PWD')
+            if pwd_index is None:
+                conn.close()
+                return jsonify({"error": "Database error"}), 500
+
+            if admin_details[pwd_index] == data['PWD']:
+                session["admin_id"] = data["ID"]
+                conn.close()
+                return jsonify({"success": "Logged in successfully"}), 200
+            else:
+                conn.close()
+                return jsonify({"error": "wrong password"}), 401
+        except Exception as e:
+            return jsonify({"error": str(e)}), 500

@@ -26,3 +26,4 @@ def fetch_bookings():
 
 
 
+
