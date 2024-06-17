@@ -19,6 +19,10 @@ def fetch_pickups():
 def fetch_account_requests():
     return admin_panel_modl_Obj.get_all_records("req_acc")
 
+@admin_panel_bp.route("/admin/all_bookings")
+def fetch_bookings():
+    return admin_panel_modl_Obj.get_all_records("booking")
+
 
 
 
