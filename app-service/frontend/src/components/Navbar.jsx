@@ -16,17 +16,34 @@ const Navbar = ({ loggedInName }) => {
     setIsDrawerOpen(false);
   };
 
+  const isAdminRoute = location.pathname.startsWith('/admin');
+
+  const userLinks = (
+    <>
+      <Link to="/" className={`text-black text-lg hover:text-green-600 transition duration-300 ease-in-out ${location.pathname === '/' ? 'active-link' : ''}`}>Home</Link>
+      <Link to="/about" className={`text-black text-lg hover:text-green-600 transition duration-300 ease-in-out ${location.pathname === '/about' ? 'active-link' : ''}`}>About</Link>
+      <Link to="/services" className={`text-black text-lg hover:text-green-600 transition duration-300 ease-in-out ${location.pathname === '/services' ? 'active-link' : ''}`}>Services</Link>
+      <Link to="/cakesh" className={`text-black text-lg hover:text-green-600 transition duration-300 ease-in-out ${location.pathname === '/cakesh' ? 'active-link' : ''}`}>Cakesh</Link>
+      <Link to="/feelings" className={`text-black text-lg hover:text-green-600 transition duration-300 ease-in-out ${location.pathname === '/feelings' ? 'active-link' : ''}`}>Feelings</Link>
+      <Link to="/contact" className={`text-black text-lg hover:text-green-600 transition duration-300 ease-in-out ${location.pathname === '/contact' ? 'active-link' : ''}`}>Contact</Link>
+    </>
+  );
+
+  const adminLinks = (
+    <>
+      <Link to="/admin/retail-booking" className={`text-black text-lg hover:text-green-600 transition duration-300 ease-in-out ${location.pathname === '/admin/retail-booking' ? 'active-link' : ''}`}>Retail Booking</Link>
+      <Link to="/admin/booking-list" className={`text-black text-lg hover:text-green-600 transition duration-300 ease-in-out ${location.pathname === '/admin/booking-list' ? 'active-link' : ''}`}>Booking List</Link>
+      <Link to="/admin/track-entry" className={`text-black text-lg hover:text-green-600 transition duration-300 ease-in-out ${location.pathname === '/admin/track-entry' ? 'active-link' : ''}`}>Track Entry</Link>
+      <Link to="/admin/delivery-detail" className={`text-black text-lg hover:text-green-600 transition duration-300 ease-in-out ${location.pathname === '/admin/delivery-detail' ? 'active-link' : ''}`}>Delivery Detail</Link>
+    </>
+  );
+
   return (
     <nav className="sticky top-0 bg-white shadow-md flex items-center justify-between px-3 py-1 z-40" style={{ marginTop: "45px" }}>
       <img src={Dsllogo} alt="Logo" className="mr-4 h-20" />
       
       <div className="hidden md:flex items-center space-x-6">
-        <Link to="/" className={`text-black text-lg hover:text-green-600 transition duration-300 ease-in-out ${location.pathname === '/' ? 'active-link' : ''}`}>Home</Link>
-        <Link to="/about" className={`text-black text-lg hover:text-green-600 transition duration-300 ease-in-out ${location.pathname === '/about' ? 'active-link' : ''}`}>About</Link>
-        <Link to="/services" className={`text-black text-lg hover:text-green-600 transition duration-300 ease-in-out ${location.pathname === '/services' ? 'active-link' : ''}`}>Services</Link>
-        <Link to="/cakesh" className={`text-black text-lg hover:text-green-600 transition duration-300 ease-in-out ${location.pathname === '/cakesh' ? 'active-link' : ''}`}>Cakesh</Link>
-        <Link to="/feelings" className={`text-black text-lg hover:text-green-600 transition duration-300 ease-in-out ${location.pathname === '/feelings' ? 'active-link' : ''}`}>Feelings</Link>
-        <Link to="/contact" className={`text-black text-lg hover:text-green-600 transition duration-300 ease-in-out ${location.pathname === '/contact' ? 'active-link' : ''}`}>Contact</Link>
+        {isAdminRoute ? adminLinks : userLinks}
       </div>
 
       <div className="flex items-center space-x-4">
@@ -57,24 +74,7 @@ const Navbar = ({ loggedInName }) => {
           </button>
         </div>
         <ul className="flex flex-col items-start space-y-4 p-6">
-          <li>
-            <Link to="/" className={`text-black text-lg hover:text-green-600 transition duration-300 ease-in-out ${location.pathname === '/' ? 'active-link' : ''}`} onClick={closeDrawer}>Home</Link>
-          </li>
-          <li>
-            <Link to="/about" className={`text-black text-lg hover:text-green-600 transition duration-300 ease-in-out ${location.pathname === '/about' ? 'active-link' : ''}`} onClick={closeDrawer}>About</Link>
-          </li>
-          <li>
-            <Link to="/services" className={`text-black text-lg hover:text-green-600 transition duration-300 ease-in-out ${location.pathname === '/services' ? 'active-link' : ''}`} onClick={closeDrawer}>Services</Link>
-          </li>
-          <li>
-            <Link to="/cakesh" className={`text-black text-lg hover:text-green-600 transition duration-300 ease-in-out ${location.pathname === '/cakesh' ? 'active-link' : ''}`} onClick={closeDrawer}>Cakesh</Link>
-          </li>
-          <li>
-            <Link to="/feelings" className={`text-black text-lg hover:text-green-600 transition duration-300 ease-in-out ${location.pathname === '/feelings' ? 'active-link' : ''}`} onClick={closeDrawer}>Feelings</Link>
-          </li>
-          <li>
-            <Link to="/contact" className={`text-black text-lg hover:text-green-600 transition duration-300 ease-in-out ${location.pathname === '/contact' ? 'active-link' : ''}`} onClick={closeDrawer}>Contact</Link>
-          </li>
+          {isAdminRoute ? adminLinks : userLinks}
         </ul>
       </div>
     </nav>

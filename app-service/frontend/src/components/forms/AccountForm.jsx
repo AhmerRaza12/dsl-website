@@ -1,8 +1,26 @@
-import React from 'react'
+import React,{useState} from 'react'
 
 const AccountForm = () => {
+  const [cnic, setCnic] = useState('');
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    const name = document.getElementById('name').value
+    const cname = document.getElementById('cname').value
+    const ntn = document.getElementById('ntn').value
+    const stn = document.getElementById('stn').value
+    console.log(name,cname,ntn,stn)
+    const formData = new FormData(e.target)
+    const data = Object.fromEntries(formData)
+    console.log(data)
+  }
+  const handleChange = (e) => {
+    const value = e.target.value
+    if (value.length <= 13) {
+      setCnic(value)
+    }
+  }
   return (
-    <form >
+    <form onSubmit={handleSubmit}>
       <section className='mx-5 my-5'>
       <div className="grid md:grid-cols-2 md:gap-6">
         {/* Company Name Required */}
@@ -32,7 +50,7 @@ const AccountForm = () => {
         <div className="grid md:grid-cols-2 md:gap-6">
         {/* Landline Number */}
         <div className="relative z-0 w-full mb-5 group">
-        <input type="text" name="landline" id="landline" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-lime-600 peer" placeholder=" " />
+        <input type="number"  name="landline" id="landline" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-lime-600 peer" placeholder=" " />
         <label htmlFor="landline" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-lime-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Landline Number</label>
         </div>
         {/* Company Phone Number */}
@@ -56,7 +74,7 @@ const AccountForm = () => {
         <div className="grid md:grid-cols-2 md:gap-6">
         {/* CNIC Number required */}
         <div className="relative z-0 w-full mb-5 group">
-        <input type="text" name="cnic" id="cnic" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-lime-600 peer" placeholder=" " required />
+        <input type="number" value={cnic} maxLength={13} onChange={handleChange} name="cnic" id="cnic" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-lime-600 peer" placeholder=" " required />
         <label htmlFor="cnic" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-lime-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">CNIC Number</label>
         </div>
         {/* Company/Facebook Url*/}
@@ -195,8 +213,11 @@ const AccountForm = () => {
 
 
 
-        {/* Submit Button */}
-
+        
+         {/* Submit Button */}
+  <button type="submit" className="mb-6 w-full rounded bg-lime-600 text-white px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal   lg:mb-0">
+    Submit
+  </button>
 
       </section>
 
