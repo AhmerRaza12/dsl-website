@@ -72,6 +72,8 @@ class UserModel:
             return "Please Login First to Logout"
         session.pop("user_id", None)
         return "200"
+    
+    
 
     def get_current_user(self):
         user_id = session.get("user_id")
