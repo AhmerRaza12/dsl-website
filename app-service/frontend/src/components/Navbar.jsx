@@ -27,6 +27,24 @@ const Navbar = () => {
   const closeDropdown = () => {
     setIsDropdownOpen(false);
   };
+  const handleLogout = async () => {
+    sessionStorage.removeItem('username');
+    const response = await fetch('http://127.0.0.1:5000/admin/logout', {
+      method: 'POST',
+      credentials: 'include'
+    });
+    if (response.ok) {
+      sessionStorage.removeItem('username');
+      loggedInName = null;
+      console.log('Logout successful');
+      window.location.reload();  
+    } else {
+      console.error('Logout failed');
+    }
+  };
+
+
+  
 
 
   useEffect(() => {
@@ -88,12 +106,7 @@ const Navbar = () => {
                   <Link
                       to="/"
                       className="block px-4 py-2 text-black hover:bg-gray-200"
-                      onClick={() => {
-                        sessionStorage.removeItem('username');
-                        loggedInName= null;
-                        closeDropdown();
-                        window.location.reload();
-                      }}
+                      onClick={handleLogout}
                     >
                       Logout
                     </Link>
