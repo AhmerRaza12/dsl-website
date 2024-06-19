@@ -14,6 +14,7 @@ import Portal from './pages/admin/Portal';
 import Contact from './pages/Contact';
 import Footer from './components/Footer';
 import BookingList from './pages/admin/BookingList';
+import RetailBooking from './pages/admin/RetailBooking';
 
 const ScrollToTopButton = () => {
   const [showButton, setShowButton] = React.useState(false);
@@ -66,8 +67,8 @@ export default function App() {
         <Route path='/feelings' element={<><Feelings /><ScrollToTopButton /></>} />
         <Route path='/signup' element={<><SignUp /><ScrollToTopButton /></>} />
         <Route path='/contact' element={<><Contact/><ScrollToTopButton /></>} />
-        {/* For Any admin routes login is required */}
-        <Route path='/admin/retail-booking' element={<> <Navbar/> <Portal /> <ScrollToTopButton/></>} />
+        
+        <Route path='/admin/retail-booking' element={<> <Navbar/> <RetailBooking/> <ScrollToTopButton/></>} />
         <Route path='/admin/booking-list' element={<><Navbar/><BookingList/> <ScrollToTopButton/></>} />
         <Route path='/admin/track-entry' element={<><Navbar/><Portal /> <ScrollToTopButton/></>} />
         <Route path='/admin/delivery-detail' element={<><Navbar/><Portal /> <ScrollToTopButton/></>} />
