@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link,useNavigate} from 'react-router-dom';
 import axios from 'axios';
 
-const LoginForm = ({ onLogin }) => {
+const LoginForm = ({onLogin}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -33,9 +33,9 @@ const LoginForm = ({ onLogin }) => {
       if (data.error) {
         throw new Error(data.error);
       }
-      console.log('Login successful:', data[0]['user']);
-      sessionStorage.setItem('username', data[0]['user']);
-      onLogin(data[0]['user']);
+      console.log('Login successful:', data.user);
+      sessionStorage.setItem('username', data.user);
+      onLogin(data.user);
 
       console.log('Cookies after login:', document.cookie);
       if (username.startsWith('web')) {
