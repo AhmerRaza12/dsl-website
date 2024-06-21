@@ -115,7 +115,7 @@ class AdminPanelModel:
             record_data = {field: data.get(field) for field in required_fields}
             record_data.update(default_values)
 
-            record_data['DSL_CN'] = f"{record_data['DSL_CN']}{branch_name}"
+            record_data['DSL_CN'] = f"{record_data['DSL_CN']}"
 
             idbooking_query = text(f"SELECT MAX(idbooking) + 1 FROM {table_name}")
             idbooking_result = db.session.execute(idbooking_query)
@@ -144,7 +144,7 @@ class AdminPanelModel:
 
             admin_id = session.get('admin_id')
             if not admin_id:
-                return jsonify({"error": "Authentication required"}), 4010
+                return jsonify({"error": "Authentication required"}), 401
 
             update_data = {
                 'DSL_CN': request.form.get('DSL_CN', ''),
