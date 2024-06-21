@@ -235,7 +235,8 @@ class AdminPanelModel:
         except Exception as e:
             print(f"Error fetching next DSL_CN: {e}")
             return jsonify(error="Internal Server Error"), 500
-        
+
+   
     def get_booking_details(self):
         try:
             if 'admin_id' not in session:
@@ -273,3 +274,31 @@ class AdminPanelModel:
         except Exception as e:
             print(f"Error fetching booking details: {e}")
             return jsonify(error="Internal Server Error"), 500
+        
+    def get_update_record(self):
+        try:
+            if 'admin_id' not in session:
+                return jsonify({"error": "Authentication required"}), 401
+
+            admin_id = session['admin_id']
+
+            dsl_cn = request.form.get('dsl_cn')
+            if not dsl_cn:
+                return jsonify({"error": "DSL_CN parameter is required"}), 400
+
+            record_query = text("""
+                SELECT DSL_CN, Ptnr_Code, Ptnr_CN, Product, Service, PayMode, AcctNo, Bkg_Date, Pku_Date, Orgn_Code, Dstn_Code, Pieces, Weight, Shpr_Name, Shpr_Mobile, Shpr_Phone, Shpr_Addr, Cngs_Name, Cngs_Mobile, Cngs_Phone, Cngs_Addr, Content, Insured_Value, Service_Chrg, Other_Chrg, Insured_Chrg, GST, Total, Remarks, Instruction, Discount, Height, Length, Width, COD, Status
+                FROM booking
+                WHERE DSL_CN = :dsl_cn
+            """)
+            record_result = db.session.execute(record_query, {'dsl_cn': dsl_cn}).fetchone()
+
+            if not record_result:
+                return jsonify({"error": f"Record with DSL_CN {dsl_cn} not found"}), 404
+
+            record = dict(record_result._mapping)
+
+            return jsonify(record), 200
+        except Exception as e:
+            print(f"Error fetching record: {e}")
+            return jsonify(error="Internal Server Error"), 500 

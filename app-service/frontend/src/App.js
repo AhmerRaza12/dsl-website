@@ -15,7 +15,7 @@ import Contact from './pages/Contact';
 import Footer from './components/Footer';
 import BookingList from './pages/admin/BookingList';
 import RetailBooking from './pages/admin/RetailBooking';
-
+import TrackEntry from './pages/admin/TrackEntry';
 const ScrollToTopButton = () => {
   const [showButton, setShowButton] = React.useState(false);
   const handleScroll = () => {
@@ -70,7 +70,7 @@ export default function App() {
         
         <Route path='/admin/retail-booking' element={<> <Navbar/> <RetailBooking/> <ScrollToTopButton/></>} />
         <Route path='/admin/booking-list' element={<><Navbar/><BookingList/> <ScrollToTopButton/></>} />
-        <Route path='/admin/track-entry' element={<><Navbar/><Portal /> <ScrollToTopButton/></>} />
+        <Route path='/admin/track-entry' element={<><Navbar/><TrackEntry/> <ScrollToTopButton/></>} />
         <Route path='/admin/delivery-detail' element={<><Navbar/><Portal /> <ScrollToTopButton/></>} />
       </Routes>
       <Footer />
