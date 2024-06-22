@@ -282,7 +282,7 @@ class AdminPanelModel:
 
             admin_id = session['admin_id']
 
-            dsl_cn = request.form.get('dsl_cn')
+            dsl_cn = request.args.get('dsl_cn')
             if not dsl_cn:
                 return jsonify({"error": "DSL_CN parameter is required"}), 400
 

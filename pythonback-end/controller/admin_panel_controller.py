@@ -41,7 +41,7 @@ def insert_record_to_booking():
 def update_booking_controller(dsl_cn):
     return admin_panel_modl_Obj.update_record("booking", dsl_cn)
 
-@admin_panel_bp.route("/admin/update/get_record",methods=["POST"])
+@admin_panel_bp.route("/admin/update/get_record",methods=["GET"])
 @admin_login_required
 def update_get_record_controller():
     return admin_panel_modl_Obj.get_update_record()
