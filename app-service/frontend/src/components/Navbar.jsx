@@ -79,7 +79,7 @@ const Navbar = () => {
       <Link to="/admin/retail-booking" className={`text-black text-lg hover:text-green-600 transition duration-300 ease-in-out ${location.pathname === '/admin/retail-booking' ? 'active-link' : ''}`}>Retail Booking</Link>
       <Link to="/admin/booking-list" className={`text-black text-lg hover:text-green-600 transition duration-300 ease-in-out ${location.pathname === '/admin/booking-list' ? 'active-link' : ''}`}>Booking List</Link>
       <Link to="/admin/track-entry" className={`text-black text-lg hover:text-green-600 transition duration-300 ease-in-out ${location.pathname === '/admin/track-entry' ? 'active-link' : ''}`}>Track Entry</Link>
-      <Link to="/admin/delivery-detail" className={`text-black text-lg hover:text-green-600 transition duration-300 ease-in-out ${location.pathname === '/admin/delivery-detail' ? 'active-link' : ''}`}>Delivery Detail</Link>
+      <Link to="/admin/update-booking" className={`text-black text-lg hover:text-green-600 transition duration-300 ease-in-out ${location.pathname === '/admin/update-booking' ? 'active-link' : ''}`}>Update Booking</Link>
     </>
   );
 
