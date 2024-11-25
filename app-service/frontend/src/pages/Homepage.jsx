@@ -8,7 +8,6 @@ import ChatContainer from "../components/ChatContainer";
 import CustomerForms from "../components/CustomerForms";
 import Deliver from "../components/Deliver";
 import MapSection from "../components/MapSection";
-import Footer from "../components/Footer";
 import Slideshow from "../components/Slideshow";
 const Homepage = () => {
   return (
@@ -23,7 +22,6 @@ const Homepage = () => {
       <ChatContainer />
       <Deliver/>
       <MapSection />
-      <Footer />
     </div>
   );
 };

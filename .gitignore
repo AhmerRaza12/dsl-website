@@ -8,4 +8,5 @@ pythonback-end/appmap*
 pythonback-end/myenv
 pythonback-end/myenv2
 pythonback-end/flask_session
+pythonback-end/database.db
 __pycache__
