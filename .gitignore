@@ -1,8 +1,8 @@
 frontend/node_modules/
 app-service/frontend/node_modules/
 .vscode/
-app-service/frontend/src/assets/cakesh/
-app-service/frontend/src/assets/DSL FEELINGS/
+# app-service/frontend/src/assets/cakesh/
+# app-service/frontend/src/assets/DSL FEELINGS/
 pythonback-end/tmp
 pythonback-end/appmap*
 pythonback-end/myenv
